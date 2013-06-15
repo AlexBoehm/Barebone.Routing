@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTest", "RouteTest\RouteTest.csproj", "{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Debug|x86.ActiveCfg = Debug|x86
+		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Debug|x86.Build.0 = Debug|x86
+		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Release|x86.ActiveCfg = Release|x86
+		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = RouteTest\RouteTest.csproj
+	EndGlobalSection
+EndGlobal
