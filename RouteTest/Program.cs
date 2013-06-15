@@ -6,8 +6,10 @@ namespace RouteTest
 {
 	class MainClass{
 		public static void Main(string[] args){
-			// /assetId/{assetId}-{caption}.html
+			Parse("/test/{foo}/{assetId}-hghg{caption}.html");
+		}
 
+		private static void Parse(string path){
 			var staticSegment = @"(?<StaticSegment>\w+)";
 			var parameter = @"\{(?<ParameterName>\w+?)\}";
 			var staticPart = @"(?<StaticPart>.+?)";
@@ -16,9 +18,8 @@ namespace RouteTest
 			var segment = "/(?<Segment>" + staticSegment + "|" + dynamicSegment + ")";
 			var url = "^(" + segment + ")*$";
 
-
 			var regex = new Regex(url);
-			var match = regex.Match("/test/{foo}/{assetId}-hghg{caption}.html");
+			var match = regex.Match(path);
 
 			for (int i = 0; i < match.Groups.Count; i++) {
 				Console.WriteLine(regex.GroupNameFromNumber(i));
@@ -28,8 +29,6 @@ namespace RouteTest
 					Console.WriteLine(item.Index +  "\t" + item.Value);
 				}				
 			}
-
-			Console.WriteLine("Hello World!");
 		}
 	}
 }
