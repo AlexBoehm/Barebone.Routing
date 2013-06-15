@@ -18,6 +18,7 @@ namespace RouteTest
 			var segment = "(?<Segment>" + staticSegment + "|" + dynamicSegment + ")";
 
 			var regex = new Regex(segment);
+			var groupNames = regex.GetGroupNames();
 
 			var segments = path.Split('/');
 
@@ -25,7 +26,7 @@ namespace RouteTest
 				var match = regex.Match(item);
 
 				for (int i = 0; i < match.Groups.Count; i++) {
-					Console.WriteLine(regex.GroupNameFromNumber(i));
+					Console.WriteLine(groupNames[i]);
 
 					var group = match.Groups[i];
 					foreach (Capture capture in group.Captures) {
