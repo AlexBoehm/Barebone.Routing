@@ -6,7 +6,7 @@ namespace RouteTest
 {
 	class MainClass{
 		public static void Main(string[] args){
-			Parse("/test/{foo}/{assetId}-hghg{caption}.html");
+			Parse("/test/{foo}/{assetId}-{caption}.foo.html");
 		}
 
 		private static void Parse(string path){
@@ -15,19 +15,23 @@ namespace RouteTest
 			var staticPart = @"(?<StaticPart>.+?)";
 			var segmentEnd = @"(?<SegmentEnd>.+)";
 			var dynamicSegment = "(?<DynamicSegment>" + parameter + "(?:" + staticPart + parameter + ")*" + segmentEnd + ")";
-			var segment = "/(?<Segment>" + staticSegment + "|" + dynamicSegment + ")";
-			var url = "^(" + segment + ")*$";
+			var segment = "(?<Segment>" + staticSegment + "|" + dynamicSegment + ")";
 
-			var regex = new Regex(url);
-			var match = regex.Match(path);
+			var regex = new Regex(segment);
 
-			for (int i = 0; i < match.Groups.Count; i++) {
-				Console.WriteLine(regex.GroupNameFromNumber(i));
+			var segments = path.Split('/');
 
-				var group = match.Groups[i];
-				foreach (Capture item in group.Captures) {
-					Console.WriteLine(item.Index +  "\t" + item.Value);
-				}				
+			foreach (var item in segments) {
+				var match = regex.Match(item);
+
+				for (int i = 0; i < match.Groups.Count; i++) {
+					Console.WriteLine(regex.GroupNameFromNumber(i));
+
+					var group = match.Groups[i];
+					foreach (Capture capture in group.Captures) {
+						Console.WriteLine(capture.Index +  "\t" + capture.Value);
+					}				
+				}
 			}
 		}
 	}
