@@ -16,5 +16,37 @@ namespace RouteTest
 			var candidates = table.GetCandidates("/foo/bar");
 			Assert.Equal(new List<Route>{route}, candidates);
 		}
+
+		[Fact]
+		public void Returns_dynamic_route_as_candiate(){
+			var table = new RouteTree();
+			var route1 = new Route("GET", "/foo/bar", App);
+			var route2 = new Route("GET", "/foo/{action}", App);
+			table.Add(route1, route2);
+			var candidates = table.GetCandidates("/foo/bar");
+			Assert.Equal(new List<Route>{route1, route2}, candidates);
+		}
+
+		[Fact]
+		public void Does_not_return_route_with_wrong_segement_count(){
+			var table = new RouteTree();
+			var route1 = new Route("GET", "/foo/bar", App);
+			var route2 = new Route("GET", "/foo/{action}", App);
+			var route3 = new Route("GET", "/foo/bar/{action}", App);
+			table.Add(route1, route2, route3);
+			var candidates = table.GetCandidates("/foo/bar");
+			Assert.Equal(new List<Route>{route1, route2}, candidates);
+		}
+
+		[Fact]
+		public void Does_not_return_route_with_with_wrong_static_segment(){
+			var table = new RouteTree();
+			var route1 = new Route("GET", "/foo/bar", App);
+			var route2 = new Route("GET", "/foo/{action}", App);
+			var route3 = new Route("GET", "/wrong/bar", App);
+			table.Add(route1, route2, route3);
+			var candidates = table.GetCandidates("/foo/bar");
+			Assert.Equal(new List<Route>{route1, route2}, candidates);
+		}
 	}
 }

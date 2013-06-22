@@ -7,6 +7,12 @@ namespace RouteTest
 	public class RouteTree{
 		StaticNode _root = new StaticNode(string.Empty);
 
+		public void Add(params Route[] routes){
+			foreach (var route in routes) {
+				Add(route);
+			}
+		}
+
 		public void Add(Route route){
 			var segments = new Stack<Segment>(route.Segments.Segments.Reverse());
 			AddInternal(route, segments, _root);
