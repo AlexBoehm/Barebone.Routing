@@ -78,6 +78,13 @@ namespace RouteTest
 			Assert.Null(parts[5].ParameterName);
 		}
 
+		[Fact]
+		public void Slash_at_end_generates_a_new_segment(){
+			var result = Parse("/products/");
+			Assert.True(result.Segments[1] is StaticSegment);
+			Assert.Equal(string.Empty, ((StaticSegment)result.Segments[1]).Value);
+		}
+
 		private Path Parse(string path){
 			return PathParser.Parse(path);
 		}
