@@ -35,26 +35,34 @@ namespace RouteTest
 			var lastPart = parts[parts.Length - 1];
 
 			if (!lastPart.IsParameter) {
-				pathSegment = pathSegment.Substring(0, pathSegment.Length - lastPart.Value.Length);
 				if (!pathSegment.EndsWith(lastPart.Value))
 					return false;
+
+				pathSegment = pathSegment.Substring(0, pathSegment.Length - lastPart.Value.Length);
 			}
 
 			for (int j = 0; j < parts.Length; j++) {
-//				if (lastPart.IsParameter && j == parts.Length - 1) {
-//
-//				}
+				var isLastPart = j == parts.Length -1;
+				if (!lastPart.IsParameter && isLastPart) {
+					continue;
+				}
 
 				var part = parts[j];
 				if (!part.IsParameter) {
 					pathSegment = pathSegment.Substring(part.Value.Length, pathSegment.Length - part.Value.Length);
 				}
 				else {
-					var isLastPart = j == parts.Length -1;
-					if (!isLastPart) {
+					var isLastParameterFollowedByStaticPart = part.IsParameter && j == parts.Length - 2 && !lastPart.IsParameter;
+
+					if (isLastParameterFollowedByStaticPart) {
+						var parameterValue = pathSegment;
+						parameters.Add(part.ParameterName, parameterValue);
+					}
+					else if (!isLastPart) {
 						var nextPart = parts[j + 1];
 						if (nextPart.IsParameter)
 							throw new Exception("Two dynamic parts within the same segment have to be seperated by a static part!");
+
 						var indexOfNextStaticPart = pathSegment.IndexOf(nextPart.Value);
 						if (indexOfNextStaticPart < 0)
 							return false;
