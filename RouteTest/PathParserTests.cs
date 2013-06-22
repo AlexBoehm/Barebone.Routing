@@ -65,6 +65,13 @@ namespace RouteTest
 		}
 
 		[Fact]
+		public void End_is_added_as_static_element_if_end_is_html(){
+			var result = Parse("/foo/{action}-{subaction}.html");
+			var parts = ((DynamicSegment)result.Segments[1]).Parts;
+			Assert.False(parts[3].IsParameter);
+		}
+
+		[Fact]
 		public void Value_of_ending_is_set_correctly(){
 			var result = Parse("/products/{title}-{id}-{foo}.test.html");
 			var parts = ((DynamicSegment)result.Segments[1]).Parts;

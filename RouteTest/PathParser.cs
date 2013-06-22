@@ -120,10 +120,17 @@ namespace RouteTest
 	}
 
 	public class StaticSegment : Segment {
+		public override string ToString(){
+			return "static: " + Value;
+		}
 	}
 
 	public class DynamicSegment : Segment {
 		public Part[] Parts {get; set;}
+
+		public override string ToString(){
+			return "dynamic: " + Value;
+		}
 	}
 
 	public class Part {
@@ -144,5 +151,9 @@ namespace RouteTest
 		/// </summary>
 		/// <value>The name of the parameter.</value>
 		public string ParameterName { get; set; }
+
+		public override string ToString(){
+			return Value;
+		}
 	}
 }

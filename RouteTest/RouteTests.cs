@@ -17,5 +17,10 @@ namespace RouteTest
 				route.Segments.Segments.Select(x => x.Value)
 			);
 		}
+
+		[Fact(Skip="Not implemented yet")]
+		public void Exception_is_thrown_when_paramter_is_defined_multiple_times(){
+			throw new NotImplementedException();
+		}
 	}
 }

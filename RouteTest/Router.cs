@@ -16,9 +16,10 @@ namespace RouteTest
 
 			foreach (var route in candidates) {
 				// Method prüfen
+				IDictionary<string, string> parameters;
 
-				if (RouteMatcher.Matches(route, segments)) {
-					return ResolveResult.RouteFound(route);
+				if (RouteMatcher.Matches(route, segments, out parameters)) {
+					return ResolveResult.RouteFound(route, parameters);
 				}
 			}
 
