@@ -28,6 +28,16 @@ namespace RouteTest
 		}
 
 		[Fact]
+		public void Returns_dynamic_route_with_multiple_parameters_in_one_segment_as_candiate(){
+			var table = new RouteTree();
+			var route1 = new Route("GET", "/foo/bar", App);
+			var route2 = new Route("GET", "/foo/{id}-{name}", App);
+			table.Add(route1, route2);
+			var candidates = table.GetCandidates("/foo/bar");
+			Assert.Equal(new List<Route>{route1, route2}, candidates);
+		}
+
+		[Fact]
 		public void Does_not_return_route_with_wrong_segement_count(){
 			var table = new RouteTree();
 			var route1 = new Route("GET", "/foo/bar", App);

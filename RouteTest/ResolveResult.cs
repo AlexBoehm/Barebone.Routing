@@ -16,11 +16,11 @@ namespace RouteTest
 			};
 		}
 
-//		public static ResolveResult NoResult(){
-//			return new ResolveResult() {
-//				Success = false
-//			};
-//		}
+		public static ResolveResult NoResult(){
+			return new ResolveResult() {
+				Success = false
+			};
+		}
 	}
 }
 

@@ -47,6 +47,7 @@
     <Compile Include="ResolveResult.cs" />
     <Compile Include="RouteTableTests.cs" />
     <Compile Include="RouteTree.cs" />
+    <Compile Include="RouteMatcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
