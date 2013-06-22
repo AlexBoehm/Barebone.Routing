@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RouteTest
 {
-	public class Tests{
+	public class PathParserTests{
 		[Fact]
 		public void Recognizes_one_static(){
 			var result = Parse("/info");
