@@ -48,6 +48,11 @@
     <Compile Include="RouteTableTests.cs" />
     <Compile Include="RouteTree.cs" />
     <Compile Include="RouteMatcher.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="RouteCondition.cs" />
+    <Compile Include="RouteConditionData.cs" />
+    <Compile Include="RouterTest_RouteConditions.cs" />
+    <Compile Include="RouteConditionTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
