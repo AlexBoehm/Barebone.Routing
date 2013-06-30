@@ -94,7 +94,7 @@ namespace RouteTest
 		}
 
 		private static Regex GetRegex(){
-			var staticSegment = @"(?<"+StaticSegment+">[^{]+)";
+			var staticSegment = @"(?<"+StaticSegment+">[^{]*)";
 			var parameter = @"(?<"+Parameter+@">\{(?<ParameterName>\w+?)\})";
 			var staticPart = @"(?<"+StaticPart+">.+?)";
 			var segmentEnd = @"(?<"+SegmentEnd+">.+){0,1}";
