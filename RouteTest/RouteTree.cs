@@ -41,13 +41,14 @@ namespace RouteTest
 			return result;
 		}
 
-		private void FindCandidates(string[] segments, int segmentIndex, StaticNode node, List<Route> result){
-			if (segmentIndex < segments.Length){
-				var nextSegment = segments[segmentIndex];
+		private void FindCandidates(string[] segments, int currentSegment, StaticNode node, List<Route> result){
+			var pathIsNotTooLong = currentSegment < segments.Length;
+			if (pathIsNotTooLong){
+				var nextSegment = segments[currentSegment];
 
 				var subNode = node.StaticSegments.Get(nextSegment);
 				if (subNode != null) {
-					FindCandidates(segments, segmentIndex + 1, subNode, result);
+					FindCandidates(segments, currentSegment + 1, subNode, result);
 				}
 			}
 

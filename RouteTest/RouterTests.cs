@@ -144,10 +144,21 @@ namespace RouteTest
 			var route = new Route("GET", "/test/{ProductId}/{Title}", App);
 			Assert.True(DoesNotRouteTo(route, "/test/1234/foo/this is to much"));}
 
-		[Fact(Skip="Does only work, if segment can be empty")]
+		[Fact]
 		public void Does_not_route_if_last_segement_does_not_match(){
 			var route = new Route("GET", "/test/{ProductId}/{Title}/", App);
 			Assert.True(DoesNotRouteTo(route, "/test/1234/foo/this is to much"));
+		}
+
+		[Fact]
+		public void Static_segments_have_to_be_equal(){
+			var route1 = new Route("GET", "/test/foo", App);
+			var route2 = new Route("GET", "/test/bar", App);
+			var router = new Router();
+			router.AddRoute(route1);
+			router.AddRoute(route2);
+			var result = router.Resolve(Utils.BuildGetRequest("/test/bar"));
+			Assert.Same(route2, result.Route);
 		}
 
 		[Fact]

@@ -15,7 +15,7 @@ namespace RouteTest
 				var routeSegment = item.Segments.Segments[i];
 
 				if (routeSegment is StaticSegment) {
-					if ((routeSegment as StaticSegment).Value.Equals(routeSegment))
+					if (!(routeSegment as StaticSegment).Value.Equals(pathSegment))
 						return false;
 				} else {
 					if (!CheckDynamicSegment(routeSegment as DynamicSegment, pathSegment, parameters))
