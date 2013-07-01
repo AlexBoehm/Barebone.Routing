@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTest", "RouteTest\RouteTest.csproj", "{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barebone.Router", "Barebone.Router\Barebone.Router.csproj", "{5F227285-96BB-4DAD-BCDB-496507CC687C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barebone.Router.Tests", "Barebone.Router.Tests\Barebone.Router.Tests.csproj", "{59CA0104-43DF-4D72-82EE-30109F6BEF77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,16 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Debug|x86.ActiveCfg = Debug|x86
-		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Debug|x86.Build.0 = Debug|x86
-		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Release|x86.ActiveCfg = Release|x86
-		{686F5426-43EE-4426-B73D-6D2D2E0D7BE6}.Release|x86.Build.0 = Release|x86
+		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Debug|x86.Build.0 = Debug|Any CPU
+		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Release|x86.ActiveCfg = Release|Any CPU
+		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Release|x86.Build.0 = Release|Any CPU
+		{5F227285-96BB-4DAD-BCDB-496507CC687C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F227285-96BB-4DAD-BCDB-496507CC687C}.Debug|x86.Build.0 = Debug|Any CPU
+		{5F227285-96BB-4DAD-BCDB-496507CC687C}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F227285-96BB-4DAD-BCDB-496507CC687C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = RouteTest\RouteTest.csproj
+		StartupItem = Barebone.Router\Barebone.Router.csproj
 	EndGlobalSection
 EndGlobal
