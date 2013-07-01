@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using System.Linq;
 
-namespace RouteTest
+namespace Barebone.Router
 {
 	public class PathParserTests{
 		[Fact]

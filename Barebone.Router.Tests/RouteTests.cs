@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RouteTest
+namespace Barebone.Router
 {
 	public class RouteTests{
 		private Func<IDictionary<string, object>, Task> App = (env) => Task.Factory.StartNew(() => {});

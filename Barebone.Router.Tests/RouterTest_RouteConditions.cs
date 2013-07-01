@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using System.Collections.Generic;
 
-namespace RouteTest
+namespace Barebone.Router
 {
 	using OwinEnv = IDictionary<string, object>;
 

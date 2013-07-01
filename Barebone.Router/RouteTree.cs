@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RouteTest
+namespace Barebone.Router
 {
 	public class RouteTree{
 		StaticNode _root = new StaticNode(string.Empty);

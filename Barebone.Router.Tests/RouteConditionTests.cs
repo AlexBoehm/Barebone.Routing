@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace RouteTest
+namespace Barebone.Router
 {
 	public class RouteConditionTests{
 		Func<RouteConditionData, bool> checkFunc = data => true;
