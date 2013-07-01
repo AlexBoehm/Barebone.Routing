@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Barebone.Router
 {
-	public class RouteTests{
+	public class Route_Tests{
 		private Func<IDictionary<string, object>, Task> App = (env) => Task.Factory.StartNew(() => {});
 
 		[Fact]

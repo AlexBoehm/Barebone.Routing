@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Barebone.Router
 {
-	public class RouteTableTests{
+	public class RouteTable_Tests{
 		private Func<IDictionary<string, object>, Task> App = (env) => Task.Factory.StartNew(() => {});
 
 		[Fact]

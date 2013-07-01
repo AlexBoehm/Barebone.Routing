@@ -8,14 +8,7 @@ namespace Barebone.Router
 	using OwinEnv = IDictionary<string, object>;
 	//using AppFunc = Func<IDictionary<string, object>, Task>;
 
-	public partial class RouterTests{
-		private static readonly Func<IDictionary<string, object>, Task> App = (env) => Task.Factory.StartNew(() => {});
-
-		Route[] _other = new Route[]{
-			new Route("GET", "/bar", App),
-			new Route("GET", "/boo", App)
-		};
-
+	public partial class Router_General : RouterTestBase {
 		[Fact]
 		public void Get_Static_Urls_with_one_segment_is_matched_correctly(){
 			var route = new Route("GET", "/foo", App);
@@ -188,46 +181,6 @@ namespace Barebone.Router
 			router.AddRoute(route);
 			var received = router.Resolve(Utils.BuildGetRequest("/test"));
 			Assert.NotNull(received.Parameters);
-		}
-
-		private bool RoutesTo(
-			Route correctEntry,
-			IEnumerable<Route> otherEntries,
-			string url
-			){
-			return RoutesTo (correctEntry, otherEntries, Utils.BuildGetRequest (url));
-		}
-
-		private bool RoutesTo(
-			Route correctEntry,
-			IEnumerable<Route> otherEntries,
-			OwinEnv request
-			){
-			Router router = new Router ();
-			router.AddRoute (correctEntry);
-			var entry = router.Resolve (request);
-			return entry.Route == correctEntry;
-		}
-
-		private bool DoesNotRouteTo(
-			Route Route,
-			string url
-			){
-			return DoesNotRouteTo(Route, Utils.BuildGetRequest(url));
-		}
-
-		private bool DoesNotRouteTo(
-			Route correctEntry,
-			OwinEnv request
-			){
-			Router router = new Router ();
-			router.AddRoute (correctEntry);
-			var entry = router.Resolve (request);
-
-			if (entry == null)
-				return true;
-
-			return entry.Route != correctEntry;
 		}
 	}
 }

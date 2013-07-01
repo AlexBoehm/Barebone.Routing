@@ -6,7 +6,7 @@ namespace Barebone.Router
 {
 	using OwinEnv = IDictionary<string, object>;
 
-	public partial class RouterTests {
+	public class Router_ParameterConditions : RouterTestBase {
 		[Fact]
 		public void If_no_general_route_condition_is_defined_this_equals_true(){
 			var route = new Route("GET", "/test", App);

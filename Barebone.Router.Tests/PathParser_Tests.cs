@@ -1,10 +1,11 @@
 using System;
 using Xunit;
 using System.Linq;
+using Barebone.Router;
 
 namespace Barebone.Router
 {
-	public class PathParserTests{
+	public class PathParser_Tests{
 		[Fact]
 		public void Recognizes_one_static(){
 			var result = Parse("/info");

@@ -37,13 +37,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteConditionTests.cs" />
-    <Compile Include="PathParserTests.cs" />
-    <Compile Include="RouterTest_RouteConditions.cs" />
-    <Compile Include="RouterTests.cs" />
-    <Compile Include="RouteTableTests.cs" />
-    <Compile Include="RouteTests.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="RouterTestBase.cs" />
+    <Compile Include="PathParser_Tests.cs" />
+    <Compile Include="Router_ParameterConditions.cs" />
+    <Compile Include="Router_Conditions.cs" />
+    <Compile Include="Router_General.cs" />
+    <Compile Include="RouteTable_Tests.cs" />
+    <Compile Include="Route_Tests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

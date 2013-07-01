@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Barebone.Router
 {
-	public class RouteConditionTests{
+	public class Router_Conditions{
 		Func<RouteConditionData, bool> checkFunc = data => true;
 
 		[Fact]
