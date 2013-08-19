@@ -51,8 +51,7 @@ namespace Barebone.Router
 				receivedDataFromCheckMethod = x.ConditionData;
 				return true;
 			}, 
-			conditionData)
-			                   );
+			conditionData));
 
 			var router = new Router();
 			router.AddRoute(route);

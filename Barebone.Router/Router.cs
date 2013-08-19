@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Barebone.Router
 {
@@ -21,21 +22,28 @@ namespace Barebone.Router
 		public ResolveResult Resolve(string method, string path, OwinEnv env){
 			var candidates = _routes.GetCandidates(path);
 			var segments = path.Substring(1, path.Length - 1).Split('/');
+			var routesWithMatchingPath = new List<MatchingRoute>();
 
 			foreach (var route in candidates) {
 				// Method prüfen
 				IDictionary<string, string> parameters;
 
-				if (!RouteMatcher.Matches(route, segments, out parameters))
+				if (!PathMatcher.Matches(route, segments, out parameters))
 					continue;
 
-				if (!CheckConditions(route, env, parameters))
+				routesWithMatchingPath.Add(new MatchingRoute(route, parameters));
+
+				//return ResolveResult.RouteFound(route, parameters);
+			}
+
+			foreach (var item in routesWithMatchingPath.OrderByDescending(x => x.Route.Priority)) {
+				if (!CheckConditions(item.Route, env, item.Parameters))
 					continue;
 
-				if (!CheckParameterConditions(route, parameters))
+				if (!CheckParameterConditions(item.Route, item.Parameters))
 					continue;
 
-				return ResolveResult.RouteFound(route, parameters);
+				return ResolveResult.RouteFound(item.Route, item.Parameters);
 			}
 
 			return ResolveResult.NoResult();
@@ -68,6 +76,16 @@ namespace Barebone.Router
 			}
 
 			return true;
+		}
+
+		private class MatchingRoute {
+			public Route Route { get; private set; }
+			public IDictionary<string, string> Parameters {get; private set;}
+
+			public MatchingRoute(Route route, IDictionary<string, string> parameters){
+				Route = route;
+				Parameters = parameters;
+			}
 		}
 	}
 }

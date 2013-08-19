@@ -66,11 +66,6 @@ namespace Barebone.Router
 			);
 		}
 
-		[Fact(Skip="not implemented yet")]
-		public void If_a_url_matches_multiple_routes_the_routes_are_checked_ordered_by_priority(){
-			throw new NotImplementedException();
-		}
-
 		[Fact]
 		public void Route_is_not_picted_if_one_parameter_condition_does_return_false(){
 			var route = new Route("GET", "/test/{ProductId}/{Title}", App);

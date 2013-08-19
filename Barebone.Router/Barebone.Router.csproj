@@ -39,9 +39,9 @@
     <Compile Include="Route.cs" />
     <Compile Include="RouteCondition.cs" />
     <Compile Include="RouteConditionData.cs" />
-    <Compile Include="RouteMatcher.cs" />
     <Compile Include="Router.cs" />
     <Compile Include="RouteTree.cs" />
+    <Compile Include="PathMatcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

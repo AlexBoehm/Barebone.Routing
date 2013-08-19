@@ -45,6 +45,8 @@
     <Compile Include="Router_General.cs" />
     <Compile Include="RouteTable_Tests.cs" />
     <Compile Include="Route_Tests.cs" />
+    <Compile Include="Router_Priorities.cs" />
+    <Compile Include="Router_Data.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
