@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RouteTest/Route.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Barebone.Router/Route.cs">
     <Files>
-      <File FileName="RouteTest/Route.cs" Line="27" Column="55" />
+      <File FileName="Barebone.Router/Route.cs" Line="27" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="RouteTest" expanded="True">
+          <Node name="Barebone.Router" expanded="True">
             <Node name="Route.cs" selected="True" />
           </Node>
+          <Node name="Barebone.Router.Tests" expanded="True" />
         </State>
       </Pad>
     </Pads>

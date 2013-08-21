@@ -22,5 +22,11 @@ namespace Barebone.Router
 		public void Exception_is_thrown_when_paramter_is_defined_multiple_times(){
 			throw new NotImplementedException();
 		}
+
+		[Fact]
+		public void Data_Dictionary_is_not_null(){
+			var route = new Route("GET", "/foo", App);
+			Assert.NotNull(route);
+		}
 	}
 }

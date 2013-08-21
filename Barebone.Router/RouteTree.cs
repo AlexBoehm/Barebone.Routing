@@ -38,7 +38,7 @@ namespace Barebone.Router
 			var segments = path.Substring(1, path.Length-1).Split('/');
 			var result = new List<Route>();
 			FindCandidates(segments, 0, _root, result);
-			return result;
+			return result.OrderByDescending(x => x.Priority).ToList();
 		}
 
 		private void FindCandidates(string[] segments, int currentSegment, StaticNode node, List<Route> result){
