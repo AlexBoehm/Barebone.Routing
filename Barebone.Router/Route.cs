@@ -44,10 +44,13 @@ namespace Barebone.Router
 		/// <value>The conditions.</value>
 		public List<RouteCondition> Conditions { get; set; }
 
-		public Route(HttpMethod method, string path, AppFunc owinAction){
+		public Route(HttpMethod method, string path, AppFunc owinAction):this(method,path){
+			OwinAction = owinAction;
+		}
+
+		public Route(HttpMethod method, string path){
 			Method = method;
 			Path = path;
-			OwinAction = owinAction;
 			Data = new Dictionary<string, object>();
 		}
 

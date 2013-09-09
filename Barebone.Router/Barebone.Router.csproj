@@ -42,6 +42,13 @@
     <Compile Include="Router.cs" />
     <Compile Include="RouteTree.cs" />
     <Compile Include="PathMatcher.cs" />
+    <Compile Include="Fluent\Routes.cs" />
+    <Compile Include="Fluent\Get.cs" />
+    <Compile Include="Fluent\RouteRegistration.cs" />
+    <Compile Include="Fluent\RouterExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Fluent\" />
+  </ItemGroup>
 </Project>

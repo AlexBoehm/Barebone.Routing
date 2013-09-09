@@ -47,6 +47,8 @@
     <Compile Include="Route_Tests.cs" />
     <Compile Include="Router_Priorities.cs" />
     <Compile Include="Router_Data.cs" />
+    <Compile Include="FluentAPI\HighLevel.cs" />
+    <Compile Include="FluentAPI\Assert.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -54,5 +56,8 @@
       <Project>{5F227285-96BB-4DAD-BCDB-496507CC687C}</Project>
       <Name>Barebone.Router</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FluentAPI\" />
   </ItemGroup>
 </Project>

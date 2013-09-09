@@ -9,6 +9,12 @@ namespace Barebone.Router
 	public class Router{
 		RouteTree _routes = new RouteTree();
 
+		public void AddRoutes(IEnumerable<Route> routes){
+			foreach (var route in routes) {
+				AddRoute(route);
+			}
+		}
+
 		public void AddRoute(Route route){
 			_routes.Add(route);
 		}
