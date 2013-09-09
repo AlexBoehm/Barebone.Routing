@@ -46,6 +46,7 @@
     <Compile Include="Fluent\Get.cs" />
     <Compile Include="Fluent\RouteRegistration.cs" />
     <Compile Include="Fluent\RouterExtensions.cs" />
+    <Compile Include="Fluent\Conditions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

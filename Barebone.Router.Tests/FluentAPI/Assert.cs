@@ -10,8 +10,16 @@ namespace Barebone.Router.Tests
 		public static void RoutesTo(string path, AppFunc action, Routes routes){
 			var router = new Router();
 			router.AddRoutes(routes);
-			var received = router.Resolve(Utils.BuildGetRequest(path));
-			Assert.True(action.Equals(received.Route.OwinAction));
+			var result = router.Resolve(Utils.BuildGetRequest(path));
+			Assert.True(result.Success);
+			Assert.True(action.Equals(result.Route.OwinAction));
+		}
+
+		public static void DoesNotRouteTo(string path, AppFunc action, Routes routes){
+			var router = new Router();
+			router.AddRoutes(routes);
+			var result = router.Resolve(Utils.BuildGetRequest(path));
+			Assert.False(result.Success);
 		}
 	}
 }

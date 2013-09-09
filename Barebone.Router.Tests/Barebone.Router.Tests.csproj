@@ -49,6 +49,8 @@
     <Compile Include="Router_Data.cs" />
     <Compile Include="FluentAPI\HighLevel.cs" />
     <Compile Include="FluentAPI\Assert.cs" />
+    <Compile Include="FluentAPI\HighLevel_Conditions.cs" />
+    <Compile Include="FluentAPI\TestBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
