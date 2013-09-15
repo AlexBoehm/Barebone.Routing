@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Barebone.Router.Tests
+namespace Barebone.Routing.Tests
 {
 	public class HighLevel_Conditions : TestBase{
 		[Fact]

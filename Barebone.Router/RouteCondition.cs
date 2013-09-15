@@ -1,6 +1,6 @@
 using System;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	using CheckFunc = Func<RouteConditionData, bool>;
 

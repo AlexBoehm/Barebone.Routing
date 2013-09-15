@@ -1,9 +1,8 @@
 using System;
 using Xunit;
 using System.Linq;
-using Barebone.Router;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class PathParser_Tests{
 		[Fact]

@@ -3,7 +3,7 @@ using Xunit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	using OwinEnv = IDictionary<string, object>;
 	//using AppFunc = Func<IDictionary<string, object>, Task>;

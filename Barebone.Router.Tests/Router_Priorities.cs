@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using System.Collections.Generic;
 
-namespace Barebone.Router.Tests
+namespace Barebone.Routing.Tests
 {
 
 

@@ -2,13 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	using OwinEnv = IDictionary<string, object>;
 	using AppFunc = Func<IDictionary<string, object>, Task>;
 	using HttpMethod = String;
 
 	public class Route{
+		/// <summary>
+		/// Gets or sets the identifier of the route.
+		/// </summary>
+		/// <value>The identifier.</value>
+		public string Id { get; private set; } //Setter of the id is private, because the router has to be sure, that the ids don't change
+
 		/// <summary>
 		/// HTTP Method
 		/// </summary>
@@ -46,6 +52,11 @@ namespace Barebone.Router
 
 		public Route(HttpMethod method, string path, AppFunc owinAction):this(method,path){
 			OwinAction = owinAction;
+		}
+
+		public Route(string routeId, string method, string path, AppFunc appFunc):this(method, path){
+			OwinAction = appFunc;
+			Id = routeId;
 		}
 
 		public Route(HttpMethod method, string path){

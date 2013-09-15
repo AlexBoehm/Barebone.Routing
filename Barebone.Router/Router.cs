@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	using OwinEnv = IDictionary<string, object>;
 

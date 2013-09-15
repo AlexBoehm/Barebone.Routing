@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class PathParser{
 		const string StaticSegment = "StaticSegment";

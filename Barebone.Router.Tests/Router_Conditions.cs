@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class Router_Conditions{
 		Func<RouteConditionData, bool> checkFunc = data => true;

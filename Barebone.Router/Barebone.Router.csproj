@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5F227285-96BB-4DAD-BCDB-496507CC687C}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Barebone.Router</RootNamespace>
+    <RootNamespace>Barebone.Routing</RootNamespace>
     <AssemblyName>Barebone.Router</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,6 +47,7 @@
     <Compile Include="Fluent\RouteRegistration.cs" />
     <Compile Include="Fluent\RouterExtensions.cs" />
     <Compile Include="Fluent\Conditions.cs" />
+    <Compile Include="RouteAlreadyExistsException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

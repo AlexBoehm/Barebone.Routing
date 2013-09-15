@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class PathMatcher{
 		public static bool Matches(Route item, string[] pathSegments, out IDictionary<string, string> parameters){

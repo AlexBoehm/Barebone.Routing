@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	using OwinEnv = IDictionary<string, object>;
 	using RouteParameters = IDictionary<string,string>;

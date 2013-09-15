@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace Barebone.Router.Tests
+namespace Barebone.Routing.Tests
 {
 	using AppFunc = Func<IDictionary<string, object>, Task>;
 

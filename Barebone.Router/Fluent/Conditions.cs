@@ -1,6 +1,6 @@
 using System;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public static class RouteRegistrationConditionExtensions {
 		public static RouteRegistration Condition(this RouteRegistration route, Func<RouteConditionData, bool> condition){

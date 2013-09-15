@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Barebone.Router.Tests
+namespace Barebone.Routing.Tests
 {
 	using OwinEnv = IDictionary<string, object>;
 	using AppFunc = Func<IDictionary<string, object>, Task>;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class Route_Tests{
 		private Func<IDictionary<string, object>, Task> App = (env) => Task.Factory.StartNew(() => {});
@@ -27,6 +27,18 @@ namespace Barebone.Router
 		public void Data_Dictionary_is_not_null(){
 			var route = new Route("GET", "/foo", App);
 			Assert.NotNull(route);
+		}
+
+		[Fact]
+		public void Route_can_be_created_with_an_id(){
+			var route = new Route("the-route-id", "GET", "/foo", App);
+			Assert.Equal("the-route-id", route.Id);
+		}
+
+		[Fact]
+		public void Id_is_null_if_route_id_is_not_defined(){
+			var route = new Route("GET", "/foo", App);
+			Assert.Null(route.Id);
 		}
 	}
 }

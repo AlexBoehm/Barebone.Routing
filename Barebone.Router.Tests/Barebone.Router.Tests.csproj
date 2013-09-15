@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{59CA0104-43DF-4D72-82EE-30109F6BEF77}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Barebone.Router.Tests</RootNamespace>
+    <RootNamespace>Barebone.Routing.Tests</RootNamespace>
     <AssemblyName>Barebone.Router.Tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -51,6 +51,7 @@
     <Compile Include="FluentAPI\Assert.cs" />
     <Compile Include="FluentAPI\HighLevel_Conditions.cs" />
     <Compile Include="FluentAPI\TestBase.cs" />
+    <Compile Include="Router_Ids.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

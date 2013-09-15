@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class ResolveResult{
 		public Route Route { get; private set; }

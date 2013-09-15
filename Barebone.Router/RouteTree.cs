@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Barebone.Router
+namespace Barebone.Routing
 {
 	public class RouteTree{
 		StaticNode _root = new StaticNode(string.Empty);
+		Dictionary<string, Route> _routes = new Dictionary<string, Route>();
 
 		public void Add(params Route[] routes){
 			foreach (var route in routes) {
@@ -14,11 +15,22 @@ namespace Barebone.Router
 		}
 
 		public void Add(Route route){
+			var addRouteToDictionary = !string.IsNullOrEmpty(route.Id);
+			if(addRouteToDictionary){
+				if (_routes.ContainsKey(route.Id)) {
+					throw new RouteAlreadyExistsException(route.Id);
+				}
+			}
+
 			var segments = new Stack<Segment>(route.Segments.Segments.Reverse());
 			AddInternal(route, segments, _root);
+
+			if(addRouteToDictionary){
+				_routes.Add(route.Id, route);
+            }
 		}
 
-		void AddInternal(Route route, Stack<Segment> segments, StaticNode node){
+		private void AddInternal(Route route, Stack<Segment> segments, StaticNode node){
 			if (segments.Count == 0) {
 				node.Leaves.Add(route);
 				return;
