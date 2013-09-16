@@ -57,6 +57,7 @@
     <Compile Include="RouteTree_RemoveById.cs" />
     <Compile Include="RouteTree_Ids.cs" />
     <Compile Include="Router_RemoveById.cs" />
+    <Compile Include="Router_RemoveByInstance.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
