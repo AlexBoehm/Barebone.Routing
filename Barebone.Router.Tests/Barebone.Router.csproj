@@ -52,6 +52,11 @@
     <Compile Include="FluentAPI\TestBase.cs" />
     <Compile Include="Router_Ids.cs" />
     <Compile Include="RouteTree_Tests.cs" />
+    <Compile Include="RouteTreeTestBase.cs" />
+    <Compile Include="RouteTree_RemoveByInstance.cs" />
+    <Compile Include="RouteTree_RemoveById.cs" />
+    <Compile Include="RouteTree_Ids.cs" />
+    <Compile Include="Router_RemoveById.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

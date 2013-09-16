@@ -53,17 +53,17 @@ namespace Barebone.Routing
 			return result.OrderByDescending(x => x.Priority).ToList();
 		}
 
-		public void RemoveRoute(string parameterId){
-			if(parameterId == null)
-				throw new ArgumentNullException("parameterId", "parameterId may not be null");
+		public void RemoveRoute(string routeId){
+			if(routeId == null)
+				throw new ArgumentNullException("routeId", "parameterId may not be null");
 
-			if(parameterId.Equals(string.Empty))
-				throw new ArgumentException("parameterId is empty", "parameterId");
+			if(routeId.Equals(string.Empty))
+				throw new ArgumentException("routeId is empty", "parameterId");
 
-			if (!_routes.ContainsKey(parameterId))
-				throw new ArgumentException("parameterId", string.Format("Route with id {0} is not available in the routing table", parameterId));
+			if (!_routes.ContainsKey(routeId))
+				throw new ArgumentException("routeId", string.Format("Route with id {0} is not available in the routing table", routeId));
 
-			var route = _routes[parameterId];
+			var route = _routes[routeId];
 			RemoveRoute(route);
 		}
 

@@ -55,8 +55,8 @@ namespace Barebone.Routing
 			return ResolveResult.NoResult();
 		}
 
-		public void RemoveRoute(string myid){
-			throw new NotImplementedException();
+		public void RemoveRoute(string routeId){
+			_routes.RemoveRoute(routeId);
 		}
 
 		private bool CheckConditions(Route route, OwinEnv env, IDictionary<string, string> parameters){
