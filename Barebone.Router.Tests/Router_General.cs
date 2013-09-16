@@ -1,7 +1,7 @@
 using System;
-using Xunit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace Barebone.Routing
 {

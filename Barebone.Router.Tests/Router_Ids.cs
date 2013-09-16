@@ -32,5 +32,12 @@ namespace Barebone.Routing.Tests
 
 			Assert.Throws<RouteAlreadyExistsException>(() => router.AddRoute(otherRouteWithSameId));
 		}
+
+		[Fact]
+		public void Route_can_be_removed_by_id(){
+			var router = new Router();
+			router.AddRoute(new Route("my-id", "GET", "/foo", App));
+			router.RemoveRoute("my-id");
+		}
 	}
 }

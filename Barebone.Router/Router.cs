@@ -55,7 +55,11 @@ namespace Barebone.Routing
 			return ResolveResult.NoResult();
 		}
 
-		bool CheckConditions(Route route, OwinEnv env, IDictionary<string, string> parameters){
+		public void RemoveRoute(string myid){
+			throw new NotImplementedException();
+		}
+
+		private bool CheckConditions(Route route, OwinEnv env, IDictionary<string, string> parameters){
 			if (route.Conditions == null)
 				return true;
 

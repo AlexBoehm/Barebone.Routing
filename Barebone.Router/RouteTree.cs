@@ -53,6 +53,24 @@ namespace Barebone.Routing
 			return result.OrderByDescending(x => x.Priority).ToList();
 		}
 
+		public void RemoveRoute(string parameterId){
+			if(parameterId == null)
+				throw new ArgumentNullException("parameterId", "parameterId may not be null");
+
+			if(parameterId.Equals(string.Empty))
+				throw new ArgumentException("parameterId is empty", "parameterId");
+
+			if (!_routes.ContainsKey(parameterId))
+				throw new ArgumentException("parameterId", string.Format("Route with id {0} is not available in the routing table", parameterId));
+
+			var route = _routes[parameterId];
+			RemoveRoute(route);
+		}
+
+		public void RemoveRoute(Route route){
+			_root.Remove(route);
+		}
+
 		private void FindCandidates(string[] segments, int currentSegment, StaticNode node, List<Route> result){
 			var pathIsNotTooLong = currentSegment < segments.Length;
 			if (pathIsNotTooLong){
@@ -97,6 +115,11 @@ namespace Barebone.Routing
 				Leaves = new Leaves();
 			}
 
+			public void Remove(Route route){
+				StaticSegments.Remove(route);
+				Leaves.Remove(route);
+			}
+
 			public override bool Equals(object obj){
 				if (!(obj is StaticNode))
 					return false;
@@ -134,6 +157,12 @@ namespace Barebone.Routing
 
 				return _nodes[segment];
 			}
+
+			public void Remove(Route route){
+				foreach (var item in _nodes.Values) {
+					item.Remove(route);
+				}
+			}
 		}
 
 		class Leaves : IEnumerable<Route> {
@@ -149,6 +178,10 @@ namespace Barebone.Routing
 
 			System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator(){
 				return _routes.GetEnumerator();
+			}
+
+			public void Remove(Route route){
+				_routes.Remove(route);
 			}
 		}
 	}
