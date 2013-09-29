@@ -71,6 +71,10 @@ namespace Barebone.Routing
 			_root.Remove(route);
 		}
 
+		public Route[] GetAllRoutes(){
+			return _root.GetAllRoutes().ToArray();
+		}
+
 		private void FindCandidates(string[] segments, int currentSegment, StaticNode node, List<Route> result){
 			var pathIsNotTooLong = currentSegment < segments.Length;
 			if (pathIsNotTooLong){
@@ -120,6 +124,10 @@ namespace Barebone.Routing
 				Leaves.Remove(route);
 			}
 
+			public IEnumerable<Route> GetAllRoutes(){
+				return StaticSegments.GetAllRoutes().Union(Leaves);
+			}
+
 			public override bool Equals(object obj){
 				if (!(obj is StaticNode))
 					return false;
@@ -162,6 +170,10 @@ namespace Barebone.Routing
 				foreach (var item in _nodes.Values) {
 					item.Remove(route);
 				}
+			}
+
+			public IEnumerable<Route> GetAllRoutes(){
+				return _nodes.Values.SelectMany(x => x.GetAllRoutes());
 			}
 		}
 

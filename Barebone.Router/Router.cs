@@ -63,6 +63,10 @@ namespace Barebone.Routing
 			_routes.RemoveRoute(route);
 		}
 
+		public Route[] GetAllRoutes(){
+			return _routes.GetAllRoutes();
+		}
+
 		private bool CheckConditions(Route route, OwinEnv env, IDictionary<string, string> parameters){
 			if (route.Conditions == null)
 				return true;
