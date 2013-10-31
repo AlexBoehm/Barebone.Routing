@@ -26,6 +26,10 @@ namespace Barebone.Routing
 		/// <value>The route parameters.</value>
 		public RouteParameters RouteParameters { get; private set; }
 
+		/// <summary>
+		/// Data which is assigned to the route condition, when the route condition is created.
+		/// </summary>
+		/// <value>The condition data.</value>
 		public object ConditionData { get; set; }
 
 		/// <summary>
