@@ -5,9 +5,9 @@ using System.Linq;
 namespace Barebone.Routing
 {
 	public class Routes{
-		List<RouteRegistration> _routes = new List<RouteRegistration>();
+		List<RouteRegistrationChain> _routes = new List<RouteRegistrationChain>();
 
-		public void Add(RouteRegistration registration){
+		public void Add(RouteRegistrationChain registration){
 			_routes.Add(registration);
 		}
 

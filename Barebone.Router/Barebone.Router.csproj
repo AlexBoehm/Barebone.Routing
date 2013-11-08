@@ -44,10 +44,10 @@
     <Compile Include="PathMatcher.cs" />
     <Compile Include="Fluent\Routes.cs" />
     <Compile Include="Fluent\Get.cs" />
-    <Compile Include="Fluent\RouteRegistration.cs" />
     <Compile Include="Fluent\RouterExtensions.cs" />
     <Compile Include="Fluent\Conditions.cs" />
     <Compile Include="RouteAlreadyExistsException.cs" />
+    <Compile Include="Fluent\RouteRegistrationChain.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
