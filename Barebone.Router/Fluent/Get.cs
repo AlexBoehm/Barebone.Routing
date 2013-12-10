@@ -8,6 +8,12 @@ namespace Barebone.Routing
 			routes.Add(registration);
 			return registration;
 		}
+
+		public static RouteRegistrationChain Post(this Routes routes, string path){
+			var registration = new RouteRegistrationChain("POST", path);
+			routes.Add(registration);
+			return registration;
+		}
 	}
 }
 
