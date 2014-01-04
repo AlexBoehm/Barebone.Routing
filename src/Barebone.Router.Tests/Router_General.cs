@@ -14,7 +14,7 @@ namespace Barebone.Routing
 			var route = new Route("GET", "/foo", App);
 			var router = new Router();
 			router.AddRoute(route);	
-			var result = router.Resolve("GET", "/foo", Utils.BuildGetRequest("/foo"));
+			var result = router.Resolve(FakeRequest.Get("/foo"));
 			Assert.Equal(route, result.Route);
 		}
 
@@ -23,7 +23,7 @@ namespace Barebone.Routing
 			var route = new Route("GET", "/foo/{action}", App);
 			var router = new Router();
 			router.AddRoute(route);
-			var result = router.Resolve("GET", "/foo/test", Utils.BuildGetRequest("/foo"));
+			var result = router.Resolve(FakeRequest.Get("/foo/test"));
 			Assert.Equal(route, result.Route);
 		}
 
@@ -32,7 +32,7 @@ namespace Barebone.Routing
 			var route = new Route("GET", "/foo/{action}-{subaction}", App);
 			var router = new Router();
 			router.AddRoute(route);
-			var result = router.Resolve("GET", "/foo/test-bar", Utils.BuildGetRequest("/foo"));
+			var result = router.Resolve(FakeRequest.Get("/foo/test-bar"));
 			Assert.Equal(route, result.Route);
 		}
 
@@ -41,7 +41,7 @@ namespace Barebone.Routing
 			var route = new Route("GET", "/foo/{action}-{subaction}", App);
 			var router = new Router();
 			router.AddRoute(route);
-			var result = router.Resolve("GET", "/foo/do-this", Utils.BuildGetRequest("/foo"));
+			var result = router.Resolve(FakeRequest.Get("/foo/do-this"));
 			Assert.Equal(
 				new Dictionary<string, string> {
 					{"action", "do"},
@@ -56,7 +56,7 @@ namespace Barebone.Routing
 			var route = new Route("GET", "/foo/{action}-{subaction}.html", App);
 			var router = new Router();
 			router.AddRoute(route);
-			var result = router.Resolve("GET", "/foo/do-this.html", Utils.BuildGetRequest("/foo"));
+			var result = router.Resolve(FakeRequest.Get("/foo/do-this.html"));
 			Assert.Equal(
 				new Dictionary<string, string> {
 					{"action", "do"},

@@ -35,16 +35,8 @@ namespace Barebone.Routing
 		/// <summary>
 		/// Finds a route for the request.
 		/// </summary>
-		public ResolveResult Resolve (OwinEnv env){
+		public ResolveResult Resolve(OwinEnv env){
 			var path = env ["owin.RequestPath"] as string;
-			var method = env ["owin.RequestMethod"] as string;
-			return Resolve(method, path, env);
-		}
-
-		/// <summary>
-		/// Finds a route for the request.
-		/// </summary>
-		public ResolveResult Resolve(string method, string path, OwinEnv env){
 			var candidates = _routes.GetCandidates(path);
 			var segments = path.Substring(1, path.Length - 1).Split('/');
 			var routesWithMatchingPath = new List<MatchingRoute>();
@@ -86,7 +78,7 @@ namespace Barebone.Routing
 			_routes.RemoveRoute(route);
 		}
 
-		/// <summary>
+		/// <summary>or sets
 		/// Returns all reigstered routes.
 		/// </summary>
 		/// <returns>The all routes.</returns>

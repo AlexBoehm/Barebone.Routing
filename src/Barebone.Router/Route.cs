@@ -10,7 +10,7 @@ namespace Barebone.Routing
 
 	public class Route{
 		/// <summary>
-		/// Gets or sets the identifier of the route.
+		/// Gets the identifier of the route.
 		/// </summary>
 		/// <value>The identifier.</value>
 		public string Id { get; private set; } //Setter of the id is private, because the router has to be sure, that the ids don't change
