@@ -6,7 +6,7 @@ namespace Barebone.Routing
 {
 	public class RouteTree{
 		StaticNode _root = new StaticNode(string.Empty);
-		Dictionary<string, Route> _routes = new Dictionary<string, Route>();
+		Dictionary<string, Route> _routesById = new Dictionary<string, Route>();
 
 		public void Add(params Route[] routes){
 			foreach (var route in routes) {
@@ -17,7 +17,7 @@ namespace Barebone.Routing
 		public void Add(Route route){
 			var addRouteToDictionary = !string.IsNullOrEmpty(route.Id);
 			if(addRouteToDictionary){
-				if (_routes.ContainsKey(route.Id)) {
+				if (_routesById.ContainsKey(route.Id)) {
 					throw new RouteAlreadyExistsException(route.Id);
 				}
 			}
@@ -26,7 +26,7 @@ namespace Barebone.Routing
 			AddInternal(route, segments, _root);
 
 			if(addRouteToDictionary){
-				_routes.Add(route.Id, route);
+				_routesById.Add(route.Id, route);
             }
 		}
 
@@ -60,10 +60,10 @@ namespace Barebone.Routing
 			if(routeId.Equals(string.Empty))
 				throw new ArgumentException("routeId is empty", "parameterId");
 
-			if (!_routes.ContainsKey(routeId))
+			if (!_routesById.ContainsKey(routeId))
 				throw new ArgumentException("routeId", string.Format("Route with id {0} is not available in the routing table", routeId));
 
-			var route = _routes[routeId];
+			var route = _routesById[routeId];
 			RemoveRoute(route);
 		}
 
