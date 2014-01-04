@@ -38,9 +38,8 @@ namespace Barebone.Routing
 					var elements = new List<Element>();
 
 					for (int i = 1; i < match.Groups.Count; i++) {
-//						if(
-//
-						Console.WriteLine(groupNames[i]);
+
+						//Console.WriteLine(groupNames[i]);
 
 						var group = match.Groups[i];
 						foreach (Capture capture in group.Captures) {
@@ -50,11 +49,9 @@ namespace Barebone.Routing
 								Value = capture.Value
 							});
 
-							Console.WriteLine(capture.Index +  "\t" + capture.Value);
+							//Console.WriteLine(capture.Index +  "\t" + capture.Value);
 						}
 					}
-
-					//segments.OrderBy(x => x.Position);
 
 					var segmentParts = new List<Part>();
 
