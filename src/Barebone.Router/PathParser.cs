@@ -12,7 +12,6 @@ namespace Barebone.Routing
 		const string ParameterName = "ParameterName";
 		const string Parameter = "Parameter";
 		const string SegmentEnd = "SegmentEnd";
-		
 
 		public static Path Parse(string path){
 			var regex = GetRegex();

@@ -4,6 +4,12 @@ using System.Collections.Generic;
 namespace Barebone.Routing
 {
 	public class PathMatcher{
+		/// <summary>
+		/// Checks if the given path (as pathSegments) matches with the given route
+		/// </summary>
+		/// <param name="item">route to check agains</param>
+		/// <param name="pathSegments">segements of the path to check.</param>
+		/// <param name="parameters">parameters and their values found in the path</param>
 		public static bool Matches(Route item, string[] pathSegments, out IDictionary<string, string> parameters){
 			parameters = new Dictionary<string, string>();
 

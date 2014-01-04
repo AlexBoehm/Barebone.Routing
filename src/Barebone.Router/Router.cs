@@ -31,15 +31,12 @@ namespace Barebone.Routing
 			var routesWithMatchingPath = new List<MatchingRoute>();
 
 			foreach (var route in candidates) {
-				// Method prüfen
 				IDictionary<string, string> parameters;
 
 				if (!PathMatcher.Matches(route, segments, out parameters))
 					continue;
 
 				routesWithMatchingPath.Add(new MatchingRoute(route, parameters));
-
-				//return ResolveResult.RouteFound(route, parameters);
 			}
 
 			foreach (var item in routesWithMatchingPath.OrderByDescending(x => x.Route.Priority)) {
