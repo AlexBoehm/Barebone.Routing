@@ -5,14 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Barebone.Routing
 {
-	public class PathParser{
-		const string StaticSegment = "StaticSegment";
-		const string DynamicSegment = "DynamicSegment";
-		const string StaticPart = "StaticPart";
-		const string ParameterName = "ParameterName";
-		const string Parameter = "Parameter";
-		const string SegmentEnd = "SegmentEnd";
-
+	public static class PathParser{
 		public static Path Parse(string path){
 			var regex = GetRegex();
 			var groupNames = regex.GetGroupNames();
@@ -25,15 +18,15 @@ namespace Barebone.Routing
 				var match = regex.Match(item);
 				var groups = match.Groups;
 
-				if (match.Groups[StaticSegment].Success) {
+				if (match.Groups[SegmentStructure.StaticSegment].Success) {
 					segments.Add(new StaticSegment(){
-						Value = groups[StaticSegment].Value
+						Value = groups[SegmentStructure.StaticSegment].Value
 					});
-				} else if (match.Groups[DynamicSegment].Success) {
+				} else if (match.Groups[SegmentStructure.DynamicSegment].Success) {
 					var segment = new DynamicSegment();
-					segment.Value = groups[DynamicSegment].Value;
+					segment.Value = groups[SegmentStructure.DynamicSegment].Value;
 
-					var dynamicSegmentGroup = match.Groups[DynamicSegment];
+					var dynamicSegmentGroup = match.Groups[SegmentStructure.DynamicSegment];
 
 					var elements = new List<Element>();
 
@@ -57,8 +50,8 @@ namespace Barebone.Routing
 
 					foreach (var element in elements.OrderBy(x => x.Index)) {
 						switch (element.GroupName) {
-							case SegmentEnd:
-							case StaticPart:
+						case SegmentStructure.SegmentEnd:
+						case SegmentStructure.StaticPart:
 								segmentParts.Add(
 									new Part{
 										Value = element.Value,
@@ -66,7 +59,7 @@ namespace Barebone.Routing
 										ParameterName = null
 									});
 								break;
-						case Parameter:
+						case SegmentStructure.Parameter:
 								segmentParts.Add(
 									new Part{
 									Value = element.Value,
@@ -90,66 +83,13 @@ namespace Barebone.Routing
 		}
 
 		private static Regex GetRegex(){
-			var staticSegment = @"(?<"+StaticSegment+">[^{]*)";
-			var parameter = @"(?<"+Parameter+@">\{(?<ParameterName>\w+?)\})";
-			var staticPart = @"(?<"+StaticPart+">.+?)";
-			var segmentEnd = @"(?<"+SegmentEnd+">.+){0,1}";
-			var dynamicSegment = "(?<"+DynamicSegment+">" + parameter + "(?:" + staticPart + parameter + ")*" + segmentEnd + ")";
-			var segment = "^(?<Segment>" + staticSegment + "|" + dynamicSegment + ")$";
-
-			return new Regex(segment);
+			return new Regex(SegmentStructure.segment);
 		}
 
 		private class Element {
 			public string Value { get; set; }
 			public string GroupName { get; set; }
 			public int Index { get; set; }
-		}
-	}
-
-	public class Path{
-		public Segment[] Segments {get; set;}
-	}
-
-	public abstract class Segment {
-		public string Value { get; set; }
-	}
-
-	public class StaticSegment : Segment {
-		public override string ToString(){
-			return "static: " + Value;
-		}
-	}
-
-	public class DynamicSegment : Segment {
-		public Part[] Parts {get; set;}
-
-		public override string ToString(){
-			return "dynamic: " + Value;
-		}
-	}
-
-	public class Part {
-		/// <summary>
-		/// string from the route which was parsed to this part
-		/// </summary>
-		/// <value>The value.</value>
-		public string Value { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether this instance is a parameter.
-		/// </summary>
-		/// <value><c>true</c> if this instance is parameter; otherwise, <c>false</c>.</value>
-		public bool IsParameter { get; set; }
-
-		/// <summary>
-		/// Name of the parameter if this part of the segment is a parameter
-		/// </summary>
-		/// <value>The name of the parameter.</value>
-		public string ParameterName { get; set; }
-
-		public override string ToString(){
-			return Value;
 		}
 	}
 }

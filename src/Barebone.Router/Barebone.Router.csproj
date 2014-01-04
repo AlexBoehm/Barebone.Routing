@@ -45,6 +45,8 @@
     <Compile Include="RouteAlreadyExistsException.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="HttpMethods.cs" />
+    <Compile Include="SegmentStructure.cs" />
+    <Compile Include="PathStructure.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,9 @@ namespace Barebone.Routing
 {
 	using CheckFunc = Func<RouteConditionData, bool>;
 
+	/// <summary>
+	/// Represents a condition which has to be true, for the route to be picked
+	/// </summary>
 	public class RouteCondition{
 		public CheckFunc Condition { get; set;}
 

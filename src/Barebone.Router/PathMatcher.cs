@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Barebone.Routing
 {
-	public class PathMatcher{
+	public static class PathMatcher{
 		/// <summary>
 		/// Checks if the given path (as pathSegments) matches with the given route
 		/// </summary>

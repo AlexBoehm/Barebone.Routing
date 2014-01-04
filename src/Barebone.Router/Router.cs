@@ -6,25 +6,44 @@ namespace Barebone.Routing
 {
 	using OwinEnv = IDictionary<string, object>;
 
+	/// <summary>
+	/// Router for owin Requests.
+	/// 
+	/// You can register routes within the router. If you pass an owin request (owin environment)
+	/// it tries to find a route which can handle the request. You have to call the resolved AppFunc
+	/// by yourself. The router does NOT dispath the request.
+	/// </summary>
 	public class Router{
 		RouteTree _routes = new RouteTree();
 
+		/// <summary>
+		/// Registers routes in the router.
+		/// </summary>
 		public void AddRoutes(IEnumerable<Route> routes){
 			foreach (var route in routes) {
 				AddRoute(route);
 			}
 		}
 
+		/// <summary>
+		/// Registers a route in the router.
+		/// </summary>
 		public void AddRoute(Route route){
 			_routes.Add(route);
 		}
 
+		/// <summary>
+		/// Finds a route for the request.
+		/// </summary>
 		public ResolveResult Resolve (OwinEnv env){
 			var path = env ["owin.RequestPath"] as string;
 			var method = env ["owin.RequestMethod"] as string;
 			return Resolve(method, path, env);
 		}
 
+		/// <summary>
+		/// Finds a route for the request.
+		/// </summary>
 		public ResolveResult Resolve(string method, string path, OwinEnv env){
 			var candidates = _routes.GetCandidates(path);
 			var segments = path.Substring(1, path.Length - 1).Split('/');
@@ -52,14 +71,25 @@ namespace Barebone.Routing
 			return ResolveResult.NoResult();
 		}
 
+		/// <summary>
+		/// Removes a route by id.
+		/// </summary>
 		public void RemoveRoute(string routeId){
 			_routes.RemoveRoute(routeId);
 		}
 
+		/// <summary>
+		/// Removes the given route.
+		/// </summary>
+		/// <param name="route">Route.</param>
 		public void RemoveRoute(Route route){
 			_routes.RemoveRoute(route);
 		}
 
+		/// <summary>
+		/// Returns all reigstered routes.
+		/// </summary>
+		/// <returns>The all routes.</returns>
 		public Route[] GetAllRoutes(){
 			return _routes.GetAllRoutes();
 		}
