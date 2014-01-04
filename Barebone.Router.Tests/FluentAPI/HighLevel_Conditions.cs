@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Barebone.Routing.Tests
+namespace Barebone.Routing.Tests.FluentAPI
 {
 	public class HighLevel_Conditions : TestBase{
 		[Fact]
@@ -11,7 +11,7 @@ namespace Barebone.Routing.Tests
 					.Condition("en", x => x.ConditionData.Equals("en"))
 					.Action(_action);
 
-			Assert.RoutesTo("/test", _action, _routes);
+			Assert.RoutesTo(FakeRequest.Get("/test"), _action, _routes);
 		}
 
 		[Fact]
@@ -20,7 +20,7 @@ namespace Barebone.Routing.Tests
 				.Condition("en", x => x.ConditionData.Equals("de"))
 				.Action(_action);
 
-			Assert.DoesNotRouteTo("/test", _action, _routes);
+			Assert.DoesNotRouteTo(FakeRequest.Get("/test"), _action, _routes);
 		}
 	}
 }

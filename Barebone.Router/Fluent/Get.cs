@@ -16,4 +16,3 @@ namespace Barebone.Routing
 		}
 	}
 }
-

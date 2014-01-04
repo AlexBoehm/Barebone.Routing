@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Barebone.Routing.Tests
+namespace Barebone.Routing.Tests.FluentAPI
 {
 	using OwinEnv = IDictionary<string, object>;
 	using AppFunc = Func<IDictionary<string, object>, Task>;
@@ -12,4 +12,3 @@ namespace Barebone.Routing.Tests
 		protected Routes _routes = new Routes();
 	}
 }
-
