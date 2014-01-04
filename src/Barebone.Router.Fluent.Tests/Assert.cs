@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace Barebone.Routing.Tests.FluentAPI
+namespace Barebone.Routing.Fluent.Tests
 {
 	using AppFunc = Func<IDictionary<string, object>, Task>;
 	using OwinEnv = IDictionary<string, object>;

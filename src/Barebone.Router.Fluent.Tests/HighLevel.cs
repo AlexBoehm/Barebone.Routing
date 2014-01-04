@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Barebone.Routing.Tests.FluentAPI
+namespace Barebone.Routing.Fluent.Tests
 {
 	public class HighLevel : TestBase{
 		[Fact]

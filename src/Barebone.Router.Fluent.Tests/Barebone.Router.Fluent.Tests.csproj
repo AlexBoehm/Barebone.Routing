@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{59CA0104-43DF-4D72-82EE-30109F6BEF77}</ProjectGuid>
+    <ProjectGuid>{3FB0BAE0-6742-4631-A242-50DC8D0CCA3F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Barebone.Routing.Tests</RootNamespace>
-    <AssemblyName>Barebone.Router.Tests</AssemblyName>
+    <RootNamespace>Barebone.Router.Fluent.Tests</RootNamespace>
+    <AssemblyName>Barebone.Router.Fluent.Tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,33 +30,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="xunit">
       <HintPath>..\..\lib\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouterTestBase.cs" />
-    <Compile Include="PathParser_Tests.cs" />
-    <Compile Include="Router_ParameterConditions.cs" />
-    <Compile Include="Router_Conditions.cs" />
-    <Compile Include="Router_General.cs" />
-    <Compile Include="Route_Tests.cs" />
-    <Compile Include="Router_Priorities.cs" />
-    <Compile Include="Router_Data.cs" />
-    <Compile Include="Router_Ids.cs" />
-    <Compile Include="RouteTree_Tests.cs" />
-    <Compile Include="RouteTreeTestBase.cs" />
-    <Compile Include="RouteTree_RemoveByInstance.cs" />
-    <Compile Include="RouteTree_RemoveById.cs" />
-    <Compile Include="RouteTree_Ids.cs" />
-    <Compile Include="Router_RemoveById.cs" />
-    <Compile Include="Router_RemoveByInstance.cs" />
-    <Compile Include="RouteTree_GetAllRoutes.cs" />
+    <Compile Include="Assert.cs" />
+    <Compile Include="HighLevel.cs" />
+    <Compile Include="HighLevel_Conditions.cs" />
+    <Compile Include="TestBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\Barebone.Router.Fluent\Barebone.Router.Fluent.csproj">
+      <Project>{3170BD6C-EE1B-4884-8AB6-A8DB267F0A3F}</Project>
+      <Name>Barebone.Router.Fluent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Barebone.Router\Barebone.Router.csproj">
       <Project>{5F227285-96BB-4DAD-BCDB-496507CC687C}</Project>
       <Name>Barebone.Router</Name>

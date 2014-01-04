@@ -5,12 +5,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barebone.Router", "Barebone
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barebone.Router.Tests", "Barebone.Router.Tests\Barebone.Router.Tests.csproj", "{59CA0104-43DF-4D72-82EE-30109F6BEF77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barebone.Router.Fluent", "Barebone.Router.Fluent\Barebone.Router.Fluent.csproj", "{3170BD6C-EE1B-4884-8AB6-A8DB267F0A3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barebone.Router.Fluent.Tests", "Barebone.Router.Fluent.Tests\Barebone.Router.Fluent.Tests.csproj", "{3FB0BAE0-6742-4631-A242-50DC8D0CCA3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3170BD6C-EE1B-4884-8AB6-A8DB267F0A3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3170BD6C-EE1B-4884-8AB6-A8DB267F0A3F}.Debug|x86.Build.0 = Debug|Any CPU
+		{3170BD6C-EE1B-4884-8AB6-A8DB267F0A3F}.Release|x86.ActiveCfg = Release|Any CPU
+		{3170BD6C-EE1B-4884-8AB6-A8DB267F0A3F}.Release|x86.Build.0 = Release|Any CPU
+		{3FB0BAE0-6742-4631-A242-50DC8D0CCA3F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3FB0BAE0-6742-4631-A242-50DC8D0CCA3F}.Debug|x86.Build.0 = Debug|Any CPU
+		{3FB0BAE0-6742-4631-A242-50DC8D0CCA3F}.Release|x86.ActiveCfg = Release|Any CPU
+		{3FB0BAE0-6742-4631-A242-50DC8D0CCA3F}.Release|x86.Build.0 = Release|Any CPU
 		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Debug|x86.Build.0 = Debug|Any CPU
 		{59CA0104-43DF-4D72-82EE-30109F6BEF77}.Release|x86.ActiveCfg = Release|Any CPU

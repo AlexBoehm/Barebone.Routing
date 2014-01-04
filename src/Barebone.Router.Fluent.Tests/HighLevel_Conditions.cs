@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Barebone.Routing.Tests.FluentAPI
+namespace Barebone.Routing.Fluent.Tests
 {
 	public class HighLevel_Conditions : TestBase{
 		[Fact]

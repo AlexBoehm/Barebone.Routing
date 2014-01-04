@@ -42,15 +42,9 @@
     <Compile Include="Router.cs" />
     <Compile Include="RouteTree.cs" />
     <Compile Include="PathMatcher.cs" />
-    <Compile Include="Fluent\Routes.cs" />
-    <Compile Include="Fluent\Get.cs" />
-    <Compile Include="Fluent\RouterExtensions.cs" />
-    <Compile Include="Fluent\Conditions.cs" />
     <Compile Include="RouteAlreadyExistsException.cs" />
-    <Compile Include="Fluent\RouteRegistrationChain.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="HttpMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Fluent\" />
-  </ItemGroup>
 </Project>
