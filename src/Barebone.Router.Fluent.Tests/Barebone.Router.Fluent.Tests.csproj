@@ -40,6 +40,7 @@
     <Compile Include="HighLevel.cs" />
     <Compile Include="HighLevel_Conditions.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="ReadmeExample.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

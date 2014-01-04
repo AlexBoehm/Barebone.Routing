@@ -48,14 +48,15 @@ namespace Barebone.Routing
 
 			route.AddCondition(new RouteCondition(
 				x => { 
-				receivedDataFromCheckMethod = x.ConditionData;
-				return true;
-			}, 
-			conditionData));
+					receivedDataFromCheckMethod = x.ConditionData;
+					return true;
+				}, 
+				conditionData)
+           	);
 
 			var router = new Router();
 			router.AddRoute(route);
-			router.Resolve(Utils.BuildGetRequest("/test"));
+			router.Resolve(FakeRequest.Get("/test"));
 
 			Assert.Same(conditionData, receivedDataFromCheckMethod);
 		}

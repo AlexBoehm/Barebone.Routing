@@ -90,7 +90,7 @@ namespace Barebone.Routing
 		}
 
 		[Fact]
-		public void Passes_paramter_values_to_parameter_condition_functions(){
+		public void Passes_parameter_values_to_parameter_condition_functions(){
 			var route = new Route("GET", "/test/{ProductId}/{Title}", App);
 
 			string receivedProductId = null;

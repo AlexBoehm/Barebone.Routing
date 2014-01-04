@@ -13,7 +13,7 @@ namespace Barebone.Routing
 		}
 
 		[Fact]
-		public void Data_is_null_if_constuctor_without_data_is_used(){
+		public void Data_is_null_if_constructor_without_data_is_used(){
 			var condition = new RouteCondition(checkFunc);
 			Assert.Null(condition.Data);
 		}
