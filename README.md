@@ -31,10 +31,10 @@ Some Info
 ------------------
 
 - Barebone.Router is an OWIN Router for .NET and Mono.
-- It is designed for great performance.
+- It is designed for high performance.
 - It does not use regular expressions to check the given path against route entries. It uses a tree based algorithm instead
 - It does not have any dependencies on other projects (except xunit.net)
-- Is designed to be a standalone component which can easily be used in applications using owin
+- It is designed to be a standalone component which can easily be used in applications using owin
 
 Features
 ------------------
@@ -75,7 +75,7 @@ Assert.Equal(
 );
 ```
 
-### Dyanamic segment with static end
+### Dynamic segment with static end
 
 ```csharp
 var route = new Route("GET", "/foo/{action}-{subaction}.html", App);
@@ -148,7 +148,7 @@ public class ReadmeExample{
 		});
 	}
 }
-```csharp
+```
 
 Contributions
 -------------
@@ -157,3 +157,4 @@ Contributions are always welcome. There are a lot of things to do, for example:
 
 - The fluent API has to be extended. Just a few features are implemented yet.
 - Performance tests are in need to make sure that the router is working effectively
+- Integrate with nuget
