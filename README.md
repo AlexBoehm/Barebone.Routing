@@ -94,7 +94,7 @@ Assert.Equal(
 ### Parameter conditions
 
 ```csharp
-var route = new Route("GET", "/test/{ProductId}/{Tvar router = new Router();itle}", App);
+var route = new Route("GET", "/test/{ProductId}/{title}", App);
 route.AddCondition("ProductId", value => true);
 route.AddCondition("ProductId", value => true);
 route.AddCondition("Title", value => true);
