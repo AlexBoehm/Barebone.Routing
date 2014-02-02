@@ -7,15 +7,18 @@ using OwinEnv = IDictionary<string, object>;
 public class SimpleExample{
 	public Task ProcessRequest(OwinEnv env){
 		var router = new Router();
-		var route = new Route("GET", "/info", InfoAppFunc);
+		var route = new Route("GET", "/products/{id}-{name}.html", InfoAppFunc);
 		router.AddRoute(route);
 
 		var result = router.Resolve(env);
 
 		if (result.Success) {
+			var id = result.Parameters["id"];
+			var name = result.Parameters["name"];
 			return result.Route.OwinAction(env);
 		} else {
 			// Do something else
+			throw new Exception();
 		}
 	}
 
@@ -32,9 +35,9 @@ Some Info
 
 - Barebone.Router is an OWIN Router for .NET and Mono.
 - It is designed for high performance.
-- It does not use regular expressions to check the given path against route entries. It uses a tree based algorithm instead
-- It does not have any dependencies on other projects (except xunit.net)
-- It is designed to be a standalone component which can easily be used in applications using owin
+- It does **not** use regular expressions to check the given path against route entries. It uses a tree based algorithm instead.
+- It does not have any dependencies on other projects. (except xunit.net for testing)
+- It is designed to be a standalone component which can easily be used in applications using OWIN.
 
 Features
 ------------------
@@ -87,7 +90,7 @@ Assert.Equal(
 		{"action", "do"},
 		{"subaction", "this"},
 	},
-	result.Parameters
+	result.Parameters //Dictionary containing route parameters
 );
 ```
 
@@ -95,10 +98,12 @@ Assert.Equal(
 
 ```csharp
 var route = new Route("GET", "/test/{ProductId}/{title}", App);
-route.AddCondition("ProductId", value => true);
-route.AddCondition("ProductId", value => true);
-route.AddCondition("Title", value => true);
-Assert.True(RoutesTo(route, _other, "/test/foo/nice-product"));
+route.AddCondition("ProductId", value => {
+	int id;
+	return int.TryParse(value, out id);
+});
+route.AddCondition("Title", value => value.Length > 2);
+Assert.True(RoutesTo(route, _other, "/test/123456/nice-product"));
 ```
 
 ### Parameter conditions with additional data
@@ -109,11 +114,12 @@ object conditionData = "test data to pass to check method";
 object receivedDataFromCheckMethod = null;
 
 route.AddCondition(new RouteCondition(
-	x => { 
+	x => {
+		//you can access the data here
 		receivedDataFromCheckMethod = x.ConditionData;
 		return true;
 	}, 
-	conditionData)
+	conditionData) //conditionData is passed in to the check function above
 );
 
 var router = new Router();
