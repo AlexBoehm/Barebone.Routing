@@ -100,7 +100,7 @@ Assert.Equal(
 var route = new Route("GET", "/test/{ProductId}/{title}", App);
 route.AddCondition("ProductId", value => {
 	int id;
-	return int.TryParse(value, out id);
+	return int.TryParse(value, out id); //this route is only valid if ProductId is an integer
 });
 route.AddCondition("Title", value => value.Length > 2);
 Assert.True(RoutesTo(route, _other, "/test/123456/nice-product"));
@@ -128,6 +128,22 @@ router.Resolve(FakeRequest.Get("/test"));
 
 Assert.Same(conditionData, receivedDataFromCheckMethod);
 ```
+
+### Storing data with a route
+```csharp
+var route = new Route("GET", "/customers/show/{id}", App);
+route.Data["CacheOptions"] = new CacheOptions(/* options */);
+
+var router = new Router();
+router.AddRoute(route);
+
+var resolved = router.Resolve(FakeRequest.Get("/customers/show/{id}"));
+var cacheOptions = (CacheOptions)route.Data["CacheOptions"];
+// Add Caching Options to HTTP-Header
+
+resolved.Route.OwinAction.Invoke(owinEnironment);
+```
+			
 
 Fluent API
 ------------------
