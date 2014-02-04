@@ -1,8 +1,8 @@
 using System;
-using Xunit;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Barebone.Routing.Tests
 {
@@ -26,25 +26,25 @@ namespace Barebone.Routing.Tests
 			}
 		}
 
-		public Task ParametersInRoutes(){
+		public void ParametersInRoutes(){
 			var route = new Route("GET", "/foo/{action}", App);
 			var router = new Router();
 			router.AddRoute(route);
 			var result = router.Resolve(FakeRequest.Get("/foo/test"));
 		}
 
-		public Task StoringArbitraryData(OwinEnv owinEnironment){
+		public void StoringArbitraryData(OwinEnv owinEnironment){
 			var route = new Route("GET", "/customers/show/{id}", App);
 			route.Data["CacheOptions"] = new CacheOptions(/* options */);
 
 			var router = new Router();
 			router.AddRoute(route);
 
-			var resolved = router.Resolve(FakeRequest.Get("/customers/show/{id}"));
+			var result = router.Resolve(FakeRequest.Get("/customers/show/{id}"));
 			var cacheOptions = (CacheOptions)route.Data["CacheOptions"];
 			// Add Caching Options to HTTP-Header
 
-			resolved.Route.OwinAction.Invoke(owinEnironment);
+			result.Route.OwinAction.Invoke(owinEnironment);
 		}
 
 		private Task App (OwinEnv env){
