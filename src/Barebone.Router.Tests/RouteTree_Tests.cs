@@ -36,6 +36,17 @@ namespace Barebone.Routing
 			Assert.Equal(new List<Route>{route1, route2}, candidates);
 		}
 
+        [Fact]
+        public void Dynamic_segement_can_contain_constant_at_start()
+        {
+            var table = new RouteTree();
+            var route1 = new Route("GET", "/foo/bar", App);
+            var route2 = new Route("GET", "/foo/any-text-{id}-{name}", App);
+            table.Add(route1, route2);
+            var candidates = table.GetCandidates("/foo/any-text-232-test");
+            Assert.Equal(new List<Route> { route2 }, candidates);
+        }
+
 		[Fact]
 		public void Does_not_return_route_with_wrong_segement_count(){
 			var table = new RouteTree();

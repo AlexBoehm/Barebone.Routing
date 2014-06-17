@@ -18,15 +18,17 @@ namespace Barebone.Routing
 				var match = regex.Match(item);
 				var groups = match.Groups;
 
-				if (match.Groups[SegmentStructure.StaticSegment].Success) {
+				if (match.Groups[SegmentStructure.GroupNames.StaticSegment].Success) {
 					segments.Add(new StaticSegment(){
-						Value = groups[SegmentStructure.StaticSegment].Value
+                        Value = groups[SegmentStructure.GroupNames.StaticSegment].Value
 					});
-				} else if (match.Groups[SegmentStructure.DynamicSegment].Success) {
+                }
+                else if (match.Groups[SegmentStructure.GroupNames.DynamicSegment].Success)
+                {
 					var segment = new DynamicSegment();
-					segment.Value = groups[SegmentStructure.DynamicSegment].Value;
+                    segment.Value = groups[SegmentStructure.GroupNames.DynamicSegment].Value;
 
-					var dynamicSegmentGroup = match.Groups[SegmentStructure.DynamicSegment];
+                    var dynamicSegmentGroup = match.Groups[SegmentStructure.GroupNames.DynamicSegment];
 
 					var elements = new List<Element>();
 
@@ -50,8 +52,8 @@ namespace Barebone.Routing
 
 					foreach (var element in elements.OrderBy(x => x.Index)) {
 						switch (element.GroupName) {
-						case SegmentStructure.SegmentEnd:
-						case SegmentStructure.StaticPart:
+                            case SegmentStructure.GroupNames.SegmentEnd:
+                            case SegmentStructure.GroupNames.StaticPart:
 								segmentParts.Add(
 									new Part{
 										Value = element.Value,
@@ -59,7 +61,7 @@ namespace Barebone.Routing
 										ParameterName = null
 									});
 								break;
-						case SegmentStructure.Parameter:
+                            case SegmentStructure.GroupNames.Parameter:
 								segmentParts.Add(
 									new Part{
 									Value = element.Value,
@@ -75,7 +77,7 @@ namespace Barebone.Routing
 					segment.Parts = segmentParts.ToArray();
 					segments.Add(segment);
 				} else {
-					throw new Exception("Unkown segment type");
+					throw new Exception(string.Format("Unkown segment type \"{0}\" in path \"{1}\"", item, path));
 				}
 			}
 
@@ -83,7 +85,7 @@ namespace Barebone.Routing
 		}
 
 		private static Regex GetRegex(){
-			return new Regex(SegmentStructure.segment);
+			return new Regex(SegmentStructure.segmentRegex);
 		}
 
 		private class Element {

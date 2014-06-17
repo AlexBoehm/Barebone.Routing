@@ -85,6 +85,14 @@ namespace Barebone.Routing
 			Assert.Null(parts[5].ParameterName);
 		}
 
+        [Fact]
+        public void A_dynamic_segment_can_start_with_a_static_part()
+        {
+            var result = Parse("/products/one-two-{title}-{id}-{foo}.test.html");
+            var parts = ((DynamicSegment)result.Segments[1]).Parts;
+            Assert.False(parts[0].IsParameter);
+        }
+
 		[Fact]
 		public void Slash_at_end_generates_a_new_segment(){
 			var result = Parse("/products/");
