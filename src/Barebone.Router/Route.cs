@@ -42,7 +42,7 @@ namespace Barebone.Routing
 		/// Dictionary of conditions per parameter which all have to be true for the route to be picked
 		/// </summary>
 		/// <value>The parameter conditions.</value>
-		public Dictionary<string, List<Func<string, bool>>> ParameterConditions { get; set;}
+		public Dictionary<string, List<Func<RouteValue, bool>>> ParameterConditions { get; set;}
 
 		/// <summary>
 		/// List of conditions which all have to be true for the route entry to be picked
@@ -97,11 +97,11 @@ namespace Barebone.Routing
 
 
 		//ToDo: Should this method throw an exception, if the parameter is not defined in the route?
-		public void AddCondition(string parameterName, Func<string, bool> condition){
+		public void AddCondition(string parameterName, Func<RouteValue, bool> condition){
 			if (ParameterConditions == null) {
 				lock (this) {
 					if (ParameterConditions == null) {
-						ParameterConditions = new Dictionary<string, List<Func<string, bool>>>();
+						ParameterConditions = new Dictionary<string, List<Func<RouteValue, bool>>>();
 					}
 				}
 			}
@@ -109,7 +109,7 @@ namespace Barebone.Routing
 			if (!ParameterConditions.ContainsKey(parameterName)) {
 				lock (ParameterConditions) {
 					if(!ParameterConditions.ContainsKey(parameterName))
-						ParameterConditions.Add(parameterName, new List<Func<string, bool>>());
+                        ParameterConditions.Add(parameterName, new List<Func<RouteValue, bool>>());
 				}
 			}
 

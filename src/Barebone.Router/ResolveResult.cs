@@ -6,11 +6,11 @@ namespace Barebone.Routing
 	public class ResolveResult{
 		public Route Route { get; private set; }
 		public bool Success { get; private set; }
-		public IDictionary<string,string> Parameters { get; private set; }
+		public IDictionary<string,RouteValue> Parameters { get; private set; }
 
 		private ResolveResult(){}
 
-		public static ResolveResult RouteFound(Route route, IDictionary<string, string> parameters){
+		public static ResolveResult RouteFound(Route route, IDictionary<string, RouteValue> parameters){
 			return new ResolveResult(){
 				Route = route,
 				Success = true,
@@ -25,4 +25,3 @@ namespace Barebone.Routing
 		}
 	}
 }
-

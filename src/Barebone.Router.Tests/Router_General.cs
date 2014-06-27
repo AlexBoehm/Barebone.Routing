@@ -43,9 +43,9 @@ namespace Barebone.Routing
 			router.AddRoute(route);
 			var result = router.Resolve(FakeRequest.Get("/foo/do-this"));
 			Assert.Equal(
-				new Dictionary<string, string> {
-					{"action", "do"},
-					{"subaction", "this"},
+				new Dictionary<string, RouteValue> {
+					{"action", new RouteValue("do")},
+					{"subaction", new RouteValue("this")},
 				},
 				result.Parameters
 			);
@@ -58,9 +58,9 @@ namespace Barebone.Routing
 			router.AddRoute(route);
 			var result = router.Resolve(FakeRequest.Get("/foo/do-this.html"));
 			Assert.Equal(
-				new Dictionary<string, string> {
-					{"action", "do"},
-					{"subaction", "this"},
+				new Dictionary<string, RouteValue> {
+					{"action", new RouteValue("do")},
+					{"subaction", new RouteValue("this")},
 				},
 				result.Parameters
 			);
@@ -96,8 +96,8 @@ namespace Barebone.Routing
 			string receivedProductId = null;
 			string receivedTitle = null;
 
-			route.AddCondition("ProductId", value => { receivedProductId = value; return true;});
-			route.AddCondition("Title", value => { receivedTitle = value; return true;});
+			route.AddCondition("ProductId", value => { receivedProductId = value.Value; return true;});
+			route.AddCondition("Title", value => { receivedTitle = value.Value; return true;});
 			var router = new Router();
 			router.AddRoute(route);
 			router.Resolve(Utils.BuildGetRequest("/test/123/foo"));

@@ -10,8 +10,8 @@ namespace Barebone.Routing
 		/// <param name="item">route to check agains</param>
 		/// <param name="pathSegments">segements of the path to check.</param>
 		/// <param name="parameters">parameters and their values found in the path</param>
-		public static bool Matches(Route item, string[] pathSegments, out IDictionary<string, string> parameters){
-			parameters = new Dictionary<string, string>();
+		public static bool Matches(Route item, string[] pathSegments, out IDictionary<string, RouteValue> parameters){
+			parameters = new Dictionary<string, RouteValue>();
 
 			if (item.Segments.Segments.Length != pathSegments.Length)
 				return false;
@@ -35,7 +35,7 @@ namespace Barebone.Routing
 		static bool CheckDynamicSegment(
 			DynamicSegment dynamicSegment,
 			string pathSegment,
-			IDictionary<string, string> parameters
+			IDictionary<string, RouteValue> parameters
 		){
 			var parts = dynamicSegment.Parts;
 			var lastPart = parts[parts.Length - 1];
@@ -61,7 +61,7 @@ namespace Barebone.Routing
 					var isLastParameterFollowedByStaticPart = part.IsParameter && j == parts.Length - 2 && !lastPart.IsParameter;
 
 					if (isLastParameterFollowedByStaticPart) {
-						var parameterValue = pathSegment;
+						var parameterValue = new RouteValue(pathSegment);
 						parameters.Add(part.ParameterName, parameterValue);
 					}
 					else if (!isLastPart) {
@@ -73,14 +73,14 @@ namespace Barebone.Routing
 						if (indexOfNextStaticPart < 0)
 							return false;
 
-						var parameterValue = pathSegment.Substring(0, indexOfNextStaticPart);
+						var parameterValue = new RouteValue(pathSegment.Substring(0, indexOfNextStaticPart));
 						parameters.Add(part.ParameterName, parameterValue);
 
 						pathSegment = pathSegment.Substring(indexOfNextStaticPart, pathSegment.Length - indexOfNextStaticPart);
 					}
 					else {
 						var parameterValue = pathSegment;
-						parameters.Add(lastPart.ParameterName, parameterValue);
+						parameters.Add(lastPart.ParameterName, new RouteValue(parameterValue));
 					}
 				}
 			}

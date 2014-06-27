@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Barebone.Routing
 {
 	using OwinEnv = IDictionary<string, object>;
-	using RouteParameters = IDictionary<string,string>;
+	using RouteParameters = IDictionary<string, RouteValue>;
 
 	/// <summary>
 	/// Data to pass to route dondition functions

@@ -43,7 +43,7 @@ namespace Barebone.Routing
 			var routesWithMatchingPath = new List<MatchingRoute>();
 
 			foreach (var route in candidates) {
-				IDictionary<string, string> parameters;
+				IDictionary<string, RouteValue> parameters;
 
 				if (!PathMatcher.Matches(route, segments, out parameters))
 					continue;
@@ -87,7 +87,7 @@ namespace Barebone.Routing
 			return _routes.GetAllRoutes();
 		}
 
-		private bool CheckConditions(Route route, OwinEnv env, IDictionary<string, string> parameters){
+		private bool CheckConditions(Route route, OwinEnv env, IDictionary<string, RouteValue> parameters){
 			if (route.Conditions == null)
 				return true;
 
@@ -99,7 +99,7 @@ namespace Barebone.Routing
 			return true;
 		}
 
-		private bool CheckParameterConditions(Route route, IDictionary<string, string> parameters){
+		private bool CheckParameterConditions(Route route, IDictionary<string, RouteValue> parameters){
 			if (route.ParameterConditions == null)
 				return true;
 
@@ -118,13 +118,12 @@ namespace Barebone.Routing
 
 		private class MatchingRoute {
 			public Route Route { get; private set; }
-			public IDictionary<string, string> Parameters {get; private set;}
+			public IDictionary<string, RouteValue> Parameters {get; private set;}
 
-			public MatchingRoute(Route route, IDictionary<string, string> parameters){
+			public MatchingRoute(Route route, IDictionary<string, RouteValue> parameters){
 				Route = route;
 				Parameters = parameters;
 			}
 		}
 	}
 }
-

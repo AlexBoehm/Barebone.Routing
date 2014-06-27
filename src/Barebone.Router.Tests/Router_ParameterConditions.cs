@@ -26,7 +26,7 @@ namespace Barebone.Routing
 		[Fact]
 		public void Route_parameters_passed_to_condition_function_are_not_null_if_route_contains_no_parameters(){
 			var route = new Route("GET", "/test", App);
-			IDictionary<string, string> receivedParams = null;
+			IDictionary<string, RouteValue> receivedParams = null;
 
 			route.AddCondition(new RouteCondition(data => {
 				receivedParams = data.RouteParameters;
@@ -65,7 +65,7 @@ namespace Barebone.Routing
 		public void Route_parameters_are_passed_to_condition_function(){
 			var route = new Route("GET", @"/products/{ProductId}-{Name}", App);
 
-			IDictionary<string, string> receivedParams = null;
+			IDictionary<string, RouteValue> receivedParams = null;
 
 			route.AddCondition(new RouteCondition(data => {
 				receivedParams = data.RouteParameters;
@@ -76,9 +76,9 @@ namespace Barebone.Routing
 			router.AddRoute(route);
 			router.Resolve(Utils.BuildGetRequest("/products/1234-myproduct"));
 
-			Assert.Equal(new Dictionary<string, string>(){
-				{ "ProductId" , "1234"},
-				{ "Name" , "myproduct"}
+			Assert.Equal(new Dictionary<string, RouteValue>(){
+				{ "ProductId" , new RouteValue("1234")},
+				{ "Name" , new RouteValue("myproduct")}
 			}, receivedParams);
 		}
 
