@@ -12,7 +12,7 @@ namespace Barebone.Routing
 			var table = new RouteTree();
 			var route = new Route("GET", "/foo/bar", App);
 			table.Add(route);
-			var candidates = table.GetCandidates("/foo/bar");
+			var candidates = table.GetCandidates("/foo/bar", "GET");
 			Assert.Equal(new List<Route>{route}, candidates);
 		}
 
@@ -22,7 +22,7 @@ namespace Barebone.Routing
 			var route1 = new Route("GET", "/foo/bar", App);
 			var route2 = new Route("GET", "/foo/{action}", App);
 			table.Add(route1, route2);
-			var candidates = table.GetCandidates("/foo/bar");
+			var candidates = table.GetCandidates("/foo/bar", "GET");
 			Assert.Equal(new List<Route>{route1, route2}, candidates);
 		}
 
@@ -32,7 +32,7 @@ namespace Barebone.Routing
 			var route1 = new Route("GET", "/foo/bar", App);
 			var route2 = new Route("GET", "/foo/{id}-{name}", App);
 			table.Add(route1, route2);
-			var candidates = table.GetCandidates("/foo/bar");
+			var candidates = table.GetCandidates("/foo/bar", "GET");
 			Assert.Equal(new List<Route>{route1, route2}, candidates);
 		}
 
@@ -43,7 +43,7 @@ namespace Barebone.Routing
             var route1 = new Route("GET", "/foo/bar", App);
             var route2 = new Route("GET", "/foo/any-text-{id}-{name}", App);
             table.Add(route1, route2);
-            var candidates = table.GetCandidates("/foo/any-text-232-test");
+            var candidates = table.GetCandidates("/foo/any-text-232-test", "GET");
             Assert.Equal(new List<Route> { route2 }, candidates);
         }
 
@@ -54,7 +54,7 @@ namespace Barebone.Routing
 			var route2 = new Route("GET", "/foo/{action}", App);
 			var route3 = new Route("GET", "/foo/bar/{action}", App);
 			table.Add(route1, route2, route3);
-			var candidates = table.GetCandidates("/foo/bar");
+			var candidates = table.GetCandidates("/foo/bar", "GET");
 			Assert.Equal(new List<Route>{route1, route2}, candidates);
 		}
 
@@ -65,7 +65,7 @@ namespace Barebone.Routing
 			var route2 = new Route("GET", "/foo/{action}", App);
 			var route3 = new Route("GET", "/wrong/bar", App);
 			table.Add(route1, route2, route3);
-			var candidates = table.GetCandidates("/foo/bar");
+			var candidates = table.GetCandidates("/foo/bar", "GET");
 			Assert.Equal(new List<Route>{route1, route2}, candidates);
 		}
 
@@ -85,7 +85,7 @@ namespace Barebone.Routing
 			route.Priority = 7;
 			table.Add(route);
 
-			var candidates = table.GetCandidates("/foo/test");
+			var candidates = table.GetCandidates("/foo/test", "GET");
 			var priorities = (from x in candidates select x.Priority).ToArray();
 
 			Assert.Equal(new[] { 8, 7, 6 }, priorities);

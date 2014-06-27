@@ -177,5 +177,30 @@ namespace Barebone.Routing
 			var received = router.Resolve(Utils.BuildGetRequest("/test"));
 			Assert.NotNull(received.Parameters);
 		}
+
+        [Fact]
+        public void Does_not_pick_route_when_method_is_not_matching()
+        {
+            var route = new Route("POST", "/test", App);
+            var router = new Router();
+            router.AddRoute(route);
+
+            var received = router.Resolve(Utils.BuildGetRequest("/test"));
+
+            Assert.False(received.Success);            
+        }
+
+        [Fact]
+        public void Picks_route_when_method_is_not_matching()
+        {
+            var route = new Route("POST", "/test", App);
+            var router = new Router();
+            router.AddRoute(route);
+
+            var received = router.Resolve(Utils.BuildPostRequest("/test"));
+
+            Assert.True(received.Success);
+            Assert.Same(route, received.Route);
+        }
 	}
 }

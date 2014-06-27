@@ -28,6 +28,13 @@ namespace Barebone.Routing
 			return env;
 		}
 
+        public static OwinEnv BuildPostRequest(string path)
+        {
+            var env = FakeRequest(Methods.POST);
+            env["owin.RequestPath"] = path;
+            return env;
+        }
+
 		public static OwinEnv FakeRequest(string method) {
 			return new Dictionary<string, object>(){
 				{ "owin.RequestPath", "/"},

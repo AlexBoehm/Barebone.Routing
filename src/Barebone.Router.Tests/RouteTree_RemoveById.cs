@@ -10,7 +10,7 @@ namespace Barebone.Routing.Tests
 			table.Add(new Route("my-id", "GET", "/foo", App));
 			table.RemoveRoute("my-id");
 
-			var candiates = table.GetCandidates("/foo");
+			var candiates = table.GetCandidates("/foo", "GET");
 			Assert.Equal(0, candiates.Count);
 		}
 

@@ -11,7 +11,7 @@ namespace Barebone.Routing.Tests
 			table.Add(route);
 			table.RemoveRoute(route);
 
-			var candidates = table.GetCandidates("/foo");
+			var candidates = table.GetCandidates("/foo", "GET");
 			Assert.Equal(0, candidates.Count);
 		}
 
@@ -22,7 +22,7 @@ namespace Barebone.Routing.Tests
 			table.Add(route);
 			table.RemoveRoute(route);
 
-			var candidates = table.GetCandidates("/foo/bar");
+			var candidates = table.GetCandidates("/foo/bar", "GET");
 			Assert.Equal(0, candidates.Count);
 		}
 
@@ -31,11 +31,11 @@ namespace Barebone.Routing.Tests
 			var table = new RouteTree();
 			var route = new Route("GET", "/foo/{id}", App);
 			table.Add(route);
-			Assert.Equal(new[] { route }, table.GetCandidates("/foo/12"));
+			Assert.Equal(new[] { route }, table.GetCandidates("/foo/12", "GET"));
 
 			table.RemoveRoute(route);
 
-			var candidates = table.GetCandidates("/foo/12");
+			var candidates = table.GetCandidates("/foo/12", "GET");
 			Assert.Equal(0, candidates.Count);
 		}
 
@@ -45,10 +45,10 @@ namespace Barebone.Routing.Tests
 			var route = new Route("GET", "/{id}", App);
 			table.Add(route);
 
-			Assert.Equal(new[] { route }, table.GetCandidates("/12"));
+			Assert.Equal(new[] { route }, table.GetCandidates("/12", "GET"));
 			table.RemoveRoute(route);
 
-			var candidates = table.GetCandidates("/13");
+			var candidates = table.GetCandidates("/13", "GET");
 			Assert.Equal(0, candidates.Count);
 		}
 

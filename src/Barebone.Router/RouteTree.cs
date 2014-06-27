@@ -46,13 +46,6 @@ namespace Barebone.Routing
 			}
 		}
 
-		public List<Route> GetCandidates(string path){
-			var segments = path.Substring(1, path.Length-1).Split('/');
-			var result = new List<Route>();
-			FindCandidates(segments, 0, _root, result);
-			return result.OrderByDescending(x => x.Priority).ToList();
-		}
-
 		public void RemoveRoute(string routeId){
 			if(routeId == null)
 				throw new ArgumentNullException("routeId", "parameterId may not be null");
@@ -75,19 +68,27 @@ namespace Barebone.Routing
 			return _root.GetAllRoutes().ToArray();
 		}
 
-		private void FindCandidates(string[] segments, int currentSegment, StaticNode node, List<Route> result){
+        public List<Route> GetCandidates(string path, string method)
+        {
+            var segments = path.Substring(1, path.Length - 1).Split('/');
+            var result = new List<Route>();
+            FindCandidates(segments, method, 0, _root, result);
+            return result.OrderByDescending(x => x.Priority).ToList();
+        }
+
+		private void FindCandidates(string[] segments, string method, int currentSegment, StaticNode node, List<Route> result){
 			var pathIsNotTooLong = currentSegment < segments.Length;
 			if (pathIsNotTooLong){
 				var nextSegment = segments[currentSegment];
 
 				var subNode = node.StaticSegments.Get(nextSegment);
 				if (subNode != null) {
-					FindCandidates(segments, currentSegment + 1, subNode, result);
+					FindCandidates(segments, method, currentSegment + 1, subNode, result);
 				}
 			}
 
 			foreach (var route in node.Leaves) {
-				if (route.Segments.Segments.Length == segments.Length) {
+				if (route.Method == method && route.Segments.Segments.Length == segments.Length) {
 					result.Add(route);
 				}
 			}
