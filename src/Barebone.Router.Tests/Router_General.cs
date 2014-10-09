@@ -202,5 +202,17 @@ namespace Barebone.Routing
             Assert.True(received.Success);
             Assert.Same(route, received.Route);
         }
+
+        [Fact]
+        public void Routes_with_dash_are_working()
+        {
+            var route = new Route("GET", "/api/foo-bar/get-details");
+            var router = new Router();
+            router.AddRoute(route);
+
+            var received = router.Resolve(Utils.BuildGetRequest("/api/foo-bar/get-details"));
+            Assert.True(received.Success);
+            Assert.Same(route, received.Route);
+        }
 	}
 }

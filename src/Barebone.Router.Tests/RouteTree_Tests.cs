@@ -1,8 +1,6 @@
-using System;
-using Xunit;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using Xunit;
 
 namespace Barebone.Routing
 {
