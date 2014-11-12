@@ -214,5 +214,44 @@ namespace Barebone.Routing
             Assert.True(received.Success);
             Assert.Same(route, received.Route);
         }
+
+        [Fact]
+        public void Routes_with_similar_segments_are_working_01()
+        {
+            var router = new Router();
+
+            var route1 = new Route("GET", "/SiteMaps/PreviewPages.xml");
+            var route2 = new Route("GET", "/SiteMaps/PreviewPages_{page}.xml");            
+            route2.AddCondition(new RouteCondition(data => {
+                int isInteger;
+                return int.TryParse(data.RouteParameters["page"].Value, out isInteger);
+            }));
+
+            router.AddRoute(route1);
+            router.AddRoute(route2);
+
+            var received = router.Resolve(Utils.BuildGetRequest("/SiteMaps/PreviewPages.xml"));
+            Assert.Same(route1, received.Route);
+        }
+
+        [Fact]
+        public void Routes_with_similar_segments_are_working_02()
+        {
+            var router = new Router();
+
+            var route1 = new Route("GET", "/SiteMaps/PreviewPages.xml");
+            var route2 = new Route("GET", "/SiteMaps/PreviewPages_{page}.xml");
+            route2.AddCondition(new RouteCondition(data =>
+            {
+                int isInteger;
+                return int.TryParse(data.RouteParameters["page"].Value, out isInteger);
+            }));
+
+            router.AddRoute(route1);
+            router.AddRoute(route2);
+
+            var received = router.Resolve(Utils.BuildGetRequest("/SiteMaps/PreviewPages_2.xml"));
+            Assert.Same(route2, received.Route);
+        }
 	}
 }

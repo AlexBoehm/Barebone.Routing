@@ -55,6 +55,11 @@ namespace Barebone.Routing
 
 				var part = parts[j];
 				if (!part.IsParameter) {
+                    if (pathSegment.Length < part.Value.Length)
+                    {
+                        return false;
+                    }
+
 					pathSegment = pathSegment.Substring(part.Value.Length, pathSegment.Length - part.Value.Length);
 				}
 				else {
