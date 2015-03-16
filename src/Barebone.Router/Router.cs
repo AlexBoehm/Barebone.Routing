@@ -32,10 +32,20 @@ namespace Barebone.Routing
 			_routes.Add(route);
 		}
 
+        public ResolveResult Resolve(OwinEnv env)
+        {
+            return Internal_Resolve(env, null);
+        }
+
+        public ResolveResult Resolve(OwinEnv env, Func<Route, bool> predicate)
+        {
+            return Internal_Resolve(env, predicate);
+        }
+
 		/// <summary>
 		/// Finds a route for the request.
 		/// </summary>
-		public ResolveResult Resolve(OwinEnv env){
+		public ResolveResult Internal_Resolve(OwinEnv env, Func<Route, bool> predicate = null){
 			var path = env ["owin.RequestPath"] as string;
             var method = env["owin.RequestMethod"] as string;
 			var candidates = _routes.GetCandidates(path, method);
@@ -57,6 +67,9 @@ namespace Barebone.Routing
 
 				if (!CheckParameterConditions(item.Route, item.Parameters))
 					continue;
+
+                if (predicate != null && !predicate.Invoke(item.Route))
+                    continue;
 
 				return ResolveResult.RouteFound(item.Route, item.Parameters);
 			}
